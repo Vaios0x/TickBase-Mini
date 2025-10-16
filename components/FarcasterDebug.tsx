@@ -52,7 +52,7 @@ export function FarcasterDebug() {
               if (context) {
                 addLog('Farcaster context available', 'success')
                 addLog(`User: ${context.user ? 'Logged in' : 'Not logged in'}`, 'info')
-                addLog(`Client: ${context.client?.version || 'Unknown'}`, 'info')
+                addLog(`Client: ${context.client ? 'Available' : 'Not available'}`, 'info')
               } else {
                 addLog('No Farcaster context', 'warning')
               }
