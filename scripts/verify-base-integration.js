@@ -12,7 +12,7 @@ console.log('🔍 Verificando integración con Base App...\n');
 // Verificar archivos necesarios
 const filesToCheck = [
   'public/.well-known/farcaster.json',
-  'app/api/og-image/route.ts',
+  'app/api/og-image/route.tsx',
   'app/api/webhook/route.ts',
   'public/images/screenshot1.svg',
   'public/images/screenshot2.svg',
