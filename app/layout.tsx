@@ -2,6 +2,9 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
+import { FarcasterSDK } from '@/components/FarcasterSDK'
+import { FarcasterDebug } from '@/components/FarcasterDebug'
+import { AuthorizationHelper } from '@/components/AuthorizationHelper'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,6 +22,22 @@ export const metadata = {
     userScalable: false,
   },
   themeColor: '#0052FF',
+  other: {
+    'fc:miniapp': JSON.stringify({
+      version: '1',
+      imageUrl: 'https://tickbase-miniapp.vercel.app/api/og-image',
+      button: {
+        title: 'Launch TickBase',
+        action: {
+          type: 'launch_frame',
+          url: 'https://tickbase-miniapp.vercel.app/',
+          name: 'TickBase',
+          splashImageUrl: 'https://tickbase-miniapp.vercel.app/images/grid-pattern.svg',
+          splashBackgroundColor: '#000000'
+        }
+      }
+    })
+  }
 }
 
 export default function RootLayout({
@@ -29,6 +48,9 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={inter.className}>
+        <FarcasterSDK />
+        <FarcasterDebug />
+        <AuthorizationHelper />
         <Providers>
           {children}
         </Providers>

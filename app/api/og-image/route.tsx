@@ -14,7 +14,6 @@ export async function GET() {
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: '#000000',
-          backgroundImage: 'linear-gradient(45deg, #1a1a1a 0%, #2d2d2d 100%)',
         }}
       >
         <div
@@ -55,50 +54,6 @@ export async function GET() {
             }}
           >
             Compra y vende boletos NFT con AI discovery, DeFi features y validación blockchain en Base
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              gap: '20px',
-              marginTop: '40px',
-            }}
-          >
-            <div
-              style={{
-                fontSize: 20,
-                color: '#00d4aa',
-                backgroundColor: 'rgba(0, 212, 170, 0.1)',
-                padding: '10px 20px',
-                borderRadius: '8px',
-                border: '1px solid #00d4aa',
-              }}
-            >
-              🤖 AI Discovery
-            </div>
-            <div
-              style={{
-                fontSize: 20,
-                color: '#00d4aa',
-                backgroundColor: 'rgba(0, 212, 170, 0.1)',
-                padding: '10px 20px',
-                borderRadius: '8px',
-                border: '1px solid #00d4aa',
-              }}
-            >
-              💰 DeFi Features
-            </div>
-            <div
-              style={{
-                fontSize: 20,
-                color: '#00d4aa',
-                backgroundColor: 'rgba(0, 212, 170, 0.1)',
-                padding: '10px 20px',
-                borderRadius: '8px',
-                border: '1px solid #00d4aa',
-              }}
-            >
-              🔒 Blockchain
-            </div>
           </div>
         </div>
       </div>
