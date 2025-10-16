@@ -1,21 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  
+  // Configuración para Base Mini App
   experimental: {
-    esmExternals: 'loose',
+    serverComponentsExternalPackages: ['@coinbase/minikit']
   },
-  // Configuración para evitar problemas de build
-  typescript: {
-    ignoreBuildErrors: false,
-  },
-  eslint: {
-    ignoreDuringBuilds: false,
-  },
-  webpack: (config, { isServer, webpack }) => {
-    // Resolver problemas con AppKit y WalletConnect
-    config.resolve.fallback = {
-      ...config.resolve.fallback,
-      fs: false,
-      net: false,
+  
+  webpack: (config) => {
+    config.resolve.fallback = { 
+      fs: false, 
+      net: false, 
       tls: false,
       crypto: false,
       stream: false,
@@ -25,36 +21,64 @@ const nextConfig = {
       https: false,
       assert: false,
       os: false,
-      path: false,
+      path: false
     }
-
-    // Resolver problemas de módulos
-    config.module.rules.push({
-      test: /\.m?js$/,
-      resolve: {
-        fullySpecified: false,
-      },
-    })
-
-    // Agregar externals para evitar problemas
-    config.externals = config.externals || []
     config.externals.push('pino-pretty', 'lokijs', 'encoding')
-
-    // Configuración adicional para resolver problemas de webpack
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@': require('path').resolve(__dirname, 'src'),
-    }
-
-    // Configuración para manejar módulos ESM
-    config.experiments = {
-      ...config.experiments,
-    }
-
     return config
   },
-  // Configuración para AppKit
-  transpilePackages: ['@reown/appkit', '@reown/appkit-adapter-wagmi'],
+  
+  // Headers para CORS y Mini App
+  async headers() {
+    return [
+      {
+        source: '/.well-known/farcaster.json',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET, POST, PUT, DELETE, OPTIONS',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Content-Type, Authorization',
+          },
+        ],
+      },
+      {
+        source: '/api/:path*',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+        ],
+      },
+    ]
+  },
+  
+  // Configuración de imágenes
+  images: {
+    domains: [
+      'images.unsplash.com',
+      'gateway.pinata.cloud',
+      'ipfs.io',
+      'bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi.ipfs.dweb.link'
+    ],
+    formats: ['image/webp', 'image/avif'],
+  },
+  
+  // Configuración de PWA
+  async rewrites() {
+    return [
+      {
+        source: '/manifest.json',
+        destination: '/api/manifest'
+      }
+    ]
+  }
 }
 
 module.exports = nextConfig

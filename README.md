@@ -1,459 +1,535 @@
-# 🎫 TickBase - Revolutionary NFT Ticketing Platform
+# 🎫 TickBase - Base Mini App
 
-<div align="center">
+Marketplace de boletos NFT construido como una Base mini app, accesible a través de Coinbase Wallet y Farcaster.
 
-**The Future of Event Ticketing is Here** 🚀
+![TickBase Banner](https://tickbase-miniapp.vercel.app/og-image.png)
 
-[![Next.js](https://img.shields.io/badge/Next.js-14+-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![Base Network](https://img.shields.io/badge/Base%20Network-L2%20Ethereum-blue?style=for-the-badge&logo=ethereum)](https://base.org/)
-[![Solidity](https://img.shields.io/badge/Solidity-0.8.19-363636?style=for-the-badge&logo=solidity)](https://soliditylang.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.3+-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4+-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+## 🌟 Características
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](http://makeapullrequest.com)
+- ✅ **Compra y venta de boletos NFT** - Marketplace descentralizado en Base
+- ✅ **Transacciones sin gas** - Usando Paymaster de Coinbase
+- ✅ **Validación de boletos** - Sistema de verificación on-chain
+- ✅ **Integración social** - Compartir en Farcaster y redes sociales
+- ✅ **UI optimizada** - Diseñada para mini apps en Coinbase Wallet
+- ✅ **Transferencias P2P** - Envía boletos a otros usuarios
+- ✅ **Frames de Farcaster** - Comparte eventos en redes sociales
+- ✅ **Notificaciones push** - Alertas sobre eventos y transacciones
 
-</div>
+## 🚀 Quick Start
 
----
+### Opción 1: Setup Automático (Recomendado)
 
-## 🌟 **The Story Behind TickBase**
-
-Imagine a world where event tickets are more than just pieces of paper or digital receipts. **TickBase** transforms the traditional ticketing industry by leveraging the power of **NFTs on Base Network** - creating a decentralized, secure, and infinitely scalable platform for event management.
-
-### 🎭 **The Problem We Solve**
-
-- **Fraud Prevention**: Eliminate counterfeit tickets with blockchain verification
-- **Secondary Market**: Enable secure peer-to-peer ticket trading
-- **Global Access**: Remove geographical barriers with decentralized infrastructure
-- **Cost Efficiency**: Reduce fees by 100x compared to traditional platforms
-- **Instant Settlement**: Real-time transactions with Base Network's L2 speed
-
-### 🚀 **Our Vision**
-
-To become the **leading NFT ticketing platform** that bridges the gap between traditional events and Web3 technology, making blockchain ticketing accessible to everyone while maintaining the highest standards of security and user experience.
-
----
-
-## ✨ **Key Features**
-
-### 🎫 **NFT Ticketing System**
-- **Unique Digital Assets**: Each ticket is a verifiable NFT with rich metadata
-- **Immutable Ownership**: Blockchain-based ownership records
-- **Anti-Fraud Protection**: Cryptographic verification prevents counterfeiting
-- **Royalty System**: Built-in EIP-2981 royalty support for creators
-
-### 🏪 **Decentralized Marketplace**
-- **Secondary Trading**: Buy and sell tickets peer-to-peer
-- **Dynamic Pricing**: Market-driven ticket pricing
-- **Secure Escrow**: Smart contract-based transaction security
-- **Platform Fees**: Transparent 2.5% marketplace fee structure
-
-### ⚡ **Base Network Integration**
-- **Lightning Fast**: Sub-second transaction confirmations
-- **Ultra Low Cost**: 100x cheaper than Ethereum mainnet
-- **Ethereum Security**: Inherits security from Ethereum L1
-- **Developer Friendly**: Full EVM compatibility
-
-### 🎨 **Modern User Experience**
-- **Responsive Design**: Optimized for all devices
-- **Progressive Web App**: Install as native app
-- **Dark/Light Themes**: Customizable user interface
-- **Advanced Search**: AI-powered event discovery
-- **Real-time Updates**: Live event and ticket status
-
----
-
-## 🏗️ **Technical Architecture**
-
-### **Frontend Stack**
-<div align="center">
-
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| ![Next.js](https://img.shields.io/badge/Next.js-14+-black?style=flat-square&logo=next.js) | 14.2.0 | React Framework with App Router |
-| ![TypeScript](https://img.shields.io/badge/TypeScript-5.3+-blue?style=flat-square&logo=typescript) | 5.3.3 | Type Safety & Developer Experience |
-| ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4+-38B2AC?style=flat-square&logo=tailwind-css) | 3.4.0 | Utility-first CSS Framework |
-| ![Framer Motion](https://img.shields.io/badge/Framer%20Motion-12.23+-black?style=flat-square&logo=framer) | 12.23.12 | Animation Library |
-| ![Radix UI](https://img.shields.io/badge/Radix%20UI-Latest-161618?style=flat-square&logo=radix-ui) | Latest | Accessible UI Components |
-
-</div>
-
-### **Web3 Stack**
-<div align="center">
-
-| Technology | Purpose |
-|------------|---------|
-| ![Base Network](https://img.shields.io/badge/Base%20Network-L2%20Ethereum-blue?style=flat-square&logo=ethereum) | Layer 2 Blockchain |
-| ![Solidity](https://img.shields.io/badge/Solidity-0.8.19-363636?style=flat-square&logo=solidity) | Smart Contract Language |
-| ![Viem](https://img.shields.io/badge/Viem-2.37+-blue?style=flat-square&logo=ethereum) | TypeScript Ethereum Library |
-| ![Wagmi](https://img.shields.io/badge/Wagmi-2.16+-blue?style=flat-square&logo=ethereum) | React Hooks for Ethereum |
-| ![Reown AppKit](https://img.shields.io/badge/Reown%20AppKit-1.8+-blue?style=flat-square&logo=walletconnect) | Wallet Connection |
-
-</div>
-
-### **Backend & Database**
-<div align="center">
-
-| Technology | Purpose |
-|------------|---------|
-| ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-316192?style=flat-square&logo=postgresql) | Primary Database |
-| ![Prisma](https://img.shields.io/badge/Prisma-5.0+-2D3748?style=flat-square&logo=prisma) | Database ORM |
-| ![NextAuth.js](https://img.shields.io/badge/NextAuth.js-4.24+-black?style=flat-square&logo=next.js) | Authentication |
-| ![Next.js API](https://img.shields.io/badge/Next.js%20API-Routes-black?style=flat-square&logo=next.js) | Serverless API |
-
-</div>
-
----
-
-## 🚀 **Quick Start**
-
-### **Prerequisites**
-- Node.js 18+ 
-- npm or yarn
-- PostgreSQL 15+
-- Git
-
-### **Installation**
-
-```bash
-# Clone the repository
-git clone https://github.com/your-username/tickbase-nft-marketplace.git
-cd tickbase-nft-marketplace
-
-# Install dependencies
-npm install
-
-# Set up environment variables
-cp env.example .env.local
+**En Windows (PowerShell):**
+```powershell
+.\scripts\setup.ps1
 ```
 
-### **Environment Configuration**
+**En macOS/Linux:**
+```bash
+chmod +x scripts/setup.sh
+./scripts/setup.sh
+```
+
+### Opción 2: Crear desde template
+
+```bash
+# Crear proyecto con MiniKit template
+npx create-onchain --mini tickbase-miniapp
+cd tickbase-miniapp
+
+# Instalar dependencias adicionales
+npm install lucide-react clsx tailwind-merge canvas-confetti zustand
+
+# Copiar archivos del proyecto original
+cp -r ../TicketSaferBase/ticketsafer-site/src/components ./components/legacy
+```
+
+### Opción 3: Migrar proyecto existente
+
+```bash
+# Clonar y navegar al proyecto
+git clone https://github.com/Vaios0x/TickBase.git
+cd TicketSaferBase
+
+# Crear nueva branch para migración
+git checkout -b miniapp-migration
+
+# Instalar dependencias de MiniKit
+cd ticketsafer-site
+npm install @coinbase/onchainkit@latest @coinbase/minikit@latest
+npm install wagmi viem @tanstack/react-query
+npm install @headlessui/react lucide-react
+```
+
+## 📋 Configuración
+
+### 1. Variables de Entorno
+
+Crea un archivo `.env.local`:
 
 ```env
-# Base Network Configuration
-NEXT_PUBLIC_CHAIN_ID=8453
-NEXT_PUBLIC_BASE_RPC_URL=https://mainnet.base.org
-NEXT_PUBLIC_BASE_EXPLORER=https://basescan.org
+# Coinbase Developer Platform
+NEXT_PUBLIC_ONCHAINKIT_API_KEY=your_api_key_here
 
-# Smart Contract Addresses
-NEXT_PUBLIC_TICKET_CONTRACT_ADDRESS=0x...
-NEXT_PUBLIC_MARKETPLACE_CONTRACT_ADDRESS=0x...
-NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS=0x...
+# Paymaster (para transacciones sin gas)
+NEXT_PUBLIC_PAYMASTER_URL=https://api.developer.coinbase.com/rpc/v1/base/your-paymaster-key
 
-# Database
-DATABASE_URL="postgresql://username:password@localhost:5432/tickbase"
+# Contrato NFT
+NEXT_PUBLIC_CONTRACT_ADDRESS=0x... # Dirección de tu contrato
 
-# Authentication
-NEXTAUTH_SECRET=your-secret-key-here
-NEXTAUTH_URL=http://localhost:3000
+# Red (8453 para Base mainnet, 84532 para Base Sepolia)
+NEXT_PUBLIC_CHAIN_ID=84532
 
-# WalletConnect
-NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID=your-project-id
+# Basescan API (para verificación de contratos)
+BASESCAN_API_KEY=your_basescan_api_key
 
-# IPFS (Optional)
-PINATA_JWT=your-pinata-jwt-token
-PINATA_GATEWAY=https://gateway.pinata.cloud/ipfs/
+# Wallet Connect (opcional)
+NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
 ```
 
-### **Database Setup**
+### 2. Obtener API Keys
+
+1. **OnchainKit API Key**:
+   - Ve a [Coinbase Developer Platform](https://portal.cdp.coinbase.com)
+   - Crea un nuevo proyecto
+   - Copia el API key
+
+2. **Paymaster Key**:
+   - En el mismo portal, ve a "Paymasters"
+   - Crea un nuevo paymaster para Base
+   - Copia la URL con el key
+
+3. **Basescan API Key**:
+   - Ve a [Basescan](https://basescan.org/apis)
+   - Registra una cuenta
+   - Genera un API key
+
+## 🛠️ Deployment del Contrato
+
+### 1. Configurar Hardhat
 
 ```bash
-# Generate Prisma client
-npx prisma generate
+# Instalar dependencias de Hardhat
+npm install --save-dev hardhat @nomicfoundation/hardhat-toolbox
+npm install @openzeppelin/contracts
 
-# Run database migrations
-npx prisma db push
-
-# (Optional) Seed database
-npx prisma db seed
+# Inicializar Hardhat
+npx hardhat init
 ```
 
-### **Smart Contracts Deployment**
+### 2. Deploy en Base Sepolia (Testnet)
 
 ```bash
-# Compile contracts
+# Compilar contratos
 npx hardhat compile
 
-# Deploy to Base Sepolia (testnet)
-npx hardhat run scripts/deploy-all.js --network baseSepolia
+# Deploy en testnet
+npx hardhat run scripts/deploy.js --network base-sepolia
 
-# Deploy to Base Mainnet
-npx hardhat run scripts/deploy-all.js --network base
+# Verificar en Basescan
+npx hardhat verify --network base-sepolia DEPLOYED_ADDRESS
 ```
 
-### **Start Development Server**
+### 3. Deploy en Base Mainnet
 
 ```bash
+# Deploy en mainnet
+npx hardhat run scripts/deploy.js --network base
+
+# Verificar
+npx hardhat verify --network base DEPLOYED_ADDRESS
+```
+
+## 🏗️ Estructura del Proyecto
+
+```
+tickbase-miniapp/
+├── app/
+│   ├── .well-known/
+│   │   └── farcaster.json      # Manifest auto-generado
+│   ├── api/
+│   │   ├── frame/              # Frame endpoints
+│   │   ├── tx/                 # Transaction endpoints
+│   │   ├── og-image/           # Open Graph images
+│   │   └── manifest/           # PWA manifest
+│   ├── layout.tsx              # Layout principal
+│   ├── page.tsx                # Página principal
+│   └── providers.tsx           # Providers de React
+├── components/
+│   ├── tickets/
+│   │   ├── TicketList.tsx     # Lista de boletos
+│   │   ├── TicketCard.tsx     # Tarjeta de boleto
+│   │   ├── PurchaseModal.tsx  # Modal de compra
+│   │   ├── ValidationScanner.tsx # Validador de boletos
+│   │   └── TicketFilter.tsx   # Filtros de eventos
+│   ├── ui/
+│   │   ├── LoadingSpinner.tsx # Indicador de carga
+│   │   ├── ErrorBoundary.tsx  # Manejo de errores
+│   │   └── MiniAppWrapper.tsx # Wrapper para mini app
+│   └── sections/
+│       └── HeroSection.tsx    # Sección principal
+├── hooks/
+│   └── useTicketStore.ts      # Hook para manejo de tickets
+├── lib/
+│   ├── abi.ts                 # ABI del contrato
+│   ├── constants.ts           # Constantes
+│   └── utils.ts               # Utilidades
+├── contracts/
+│   └── TicketNFT.sol          # Contrato principal
+├── public/
+│   └── images/                # Imágenes
+├── scripts/
+│   └── deploy.js              # Script de deployment
+├── test/
+│   └── TicketNFT.test.js     # Tests del contrato
+├── minikit.config.ts          # Configuración de MiniKit
+├── hardhat.config.js          # Configuración de Hardhat
+└── package.json
+```
+
+## 🚀 Deployment de la App
+
+### 1. Build Local
+
+```bash
+# Development
 npm run dev
+
+# Build de producción
+npm run build
+npm run start
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) to see the application.
+### 2. Deploy en Vercel
 
----
-
-## 📁 **Project Structure**
-
-```
-tickbase-nft-marketplace/
-├── 📁 contracts/                 # Smart Contracts
-│   ├── 🎫 TicketNFT.sol         # Main ERC-721 NFT Contract
-│   ├── 🏪 TicketMarketplace.sol # Secondary Marketplace
-│   ├── 🏭 TicketFactory.sol     # Event & Ticket Factory
-│   └── ✅ TicketValidator.sol   # Ticket Validation System
-├── 📁 src/
-│   ├── 📁 app/                  # Next.js App Router
-│   │   ├── 📁 api/              # API Routes
-│   │   ├── 📁 create-event/     # Event Creation
-│   │   ├── 📁 events/           # Event Listing
-│   │   ├── 📁 marketplace/      # Secondary Market
-│   │   ├── 📁 my-tickets/       # User Tickets
-│   │   └── 📁 validation/       # Ticket Validation
-│   ├── 📁 components/           # React Components
-│   │   ├── 📁 ui/               # Base UI Components
-│   │   ├── 📁 modals/           # Modal Components
-│   │   ├── 📁 sections/         # Page Sections
-│   │   └── 📁 layout/           # Layout Components
-│   ├── 📁 hooks/                # Custom React Hooks
-│   ├── 📁 lib/                  # Utilities & Config
-│   │   ├── 📁 contracts/        # Contract ABIs & Configs
-│   │   └── 📁 utils/            # Helper Functions
-│   └── 📁 types/                # TypeScript Definitions
-├── 📁 scripts/                  # Deployment Scripts
-├── 📁 prisma/                   # Database Schema
-└── 📁 public/                   # Static Assets
-```
-
----
-
-## 🎯 **Smart Contracts Overview**
-
-### **TicketNFT.sol** 🎫
-- **ERC-721 Standard**: Full NFT implementation with metadata
-- **Event Management**: Create and manage events on-chain
-- **Ticket Minting**: Batch and individual ticket creation
-- **Royalty System**: EIP-2981 compliant royalties (2.5%)
-- **Validator System**: Authorized ticket validation
-
-### **TicketMarketplace.sol** 🏪
-- **Secondary Trading**: Peer-to-peer ticket marketplace
-- **Escrow System**: Secure transaction handling
-- **Dynamic Pricing**: Market-driven price discovery
-- **Fee Management**: Configurable platform fees
-- **Expiration System**: Time-limited listings
-
-### **TicketFactory.sol** 🏭
-- **Event Creation**: Comprehensive event management
-- **Ticket Types**: Multiple ticket categories per event
-- **Batch Operations**: Efficient bulk ticket minting
-- **Organizer Tools**: Event management utilities
-- **Statistics**: Global platform metrics
-
-### **TicketValidator.sol** ✅
-- **QR Code Verification**: Mobile-friendly validation
-- **Anti-Fraud**: Cryptographic ticket verification
-- **Usage Tracking**: Prevent double-spending
-- **Event Integration**: Real-time validation status
-
----
-
-## 🛠️ **Available Scripts**
-
-### **Development**
 ```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint
+# Instalar Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+
+# Deploy a producción
+vercel --prod
 ```
 
-### **Smart Contracts**
-```bash
-npm run compile      # Compile contracts
-npm run deploy:local # Deploy to local network
-npm run deploy:baseSepolia # Deploy to Base Sepolia
-npm run test:contracts # Run contract tests
+### 3. Configurar Dominio
+
+En el dashboard de Vercel:
+1. Ve a Settings → Domains
+2. Agrega tu dominio personalizado
+3. Configura DNS según las instrucciones
+
+## 🔐 Asociación de Cuenta
+
+### 1. Generar Credenciales
+
+1. Ve a [base.dev/account-association](https://base.dev/account-association)
+2. Ingresa tu dominio: `your-app.vercel.app`
+3. Haz clic en "Generate"
+4. Sigue las instrucciones para firmar con tu cuenta de Farcaster
+
+### 2. Actualizar Configuración
+
+```typescript
+// minikit.config.ts
+export const minikitConfig = defineConfig({
+  accountAssociation: {
+    header: "eyJ...", // Pega el header generado
+    payload: "eyJ...", // Pega el payload
+    signature: "0x..." // Pega la signature
+  },
+  // ... resto de la configuración
+})
 ```
 
-### **Database**
-```bash
-npx prisma generate  # Generate Prisma client
-npx prisma db push   # Push schema changes
-npx prisma studio    # Open database GUI
+### 3. Verificar
+
+Ve a [base.dev/preview](https://base.dev/preview) y verifica que:
+- ✅ El manifest se carga correctamente
+- ✅ La asociación de cuenta es válida
+- ✅ Los frames funcionan
+- ✅ La app se abre correctamente
+
+## 📱 Testing en Coinbase Wallet
+
+### 1. Instalar Coinbase Wallet
+
+- [iOS](https://apps.apple.com/app/coinbase-wallet/id1278383455)
+- [Android](https://play.google.com/store/apps/details?id=org.toshi)
+
+### 2. Acceder a tu Mini App
+
+1. Abre Coinbase Wallet
+2. Ve a la sección "Apps"
+3. Busca tu app o usa el URL directo
+4. Prueba todas las funcionalidades
+
+### 3. Debug Tools
+
+```javascript
+// Agregar logs para debugging
+if (process.env.NODE_ENV === 'development') {
+  console.log('MiniKit Context:', context)
+  console.log('Safe Area Insets:', safeAreaInsets)
+  console.log('User FID:', context?.client?.clientFid)
+}
 ```
+
+## 📊 Analytics
+
+### Configurar Analytics
+
+```typescript
+// lib/analytics.ts
+import { useMiniKit } from '@coinbase/minikit'
+
+export function trackEvent(eventName: string, properties?: any) {
+  const { context } = useMiniKit()
+  
+  // Enviar a tu servicio de analytics
+  analytics.track(eventName, {
+    ...properties,
+    clientFid: context?.client?.clientFid,
+    platform: 'miniapp',
+    timestamp: Date.now()
+  })
+}
+```
+
+### Eventos Importantes
+
+```typescript
+// Trackear eventos clave
+trackEvent('ticket_purchased', {
+  eventId: ticket.id,
+  price: ticket.price,
+  quantity: quantity
+})
+
+trackEvent('ticket_validated', {
+  tokenId: tokenId,
+  eventId: eventId
+})
+```
+
+## 🎨 Personalización
+
+### Temas y Colores
+
+```typescript
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#0052FF',    // Base blue
+        secondary: '#1E40AF',  // Dark blue
+        accent: '#10B981',     // Green
+        background: '#0A0B0D', // Dark background
+      }
+    }
+  }
+}
+```
+
+### Componentes Custom
+
+```tsx
+// components/ui/GlassCard.tsx
+export function GlassCard({ children, className = '' }) {
+  return (
+    <div className={`
+      bg-white/10 backdrop-blur-lg 
+      border border-white/20 
+      rounded-xl p-6
+      ${className}
+    `}>
+      {children}
+    </div>
+  )
+}
+```
+
+## 🐛 Troubleshooting
+
+### Problemas Comunes
+
+#### 1. "Manifest not found"
+```bash
+# Verificar que el manifest existe
+curl https://your-app.com/.well-known/farcaster.json
+
+# Regenerar manifest
+npm run build
+```
+
+#### 2. "Transaction failed"
+```javascript
+// Verificar configuración de Paymaster
+console.log('Paymaster URL:', process.env.NEXT_PUBLIC_PAYMASTER_URL)
+
+// Verificar balance de Paymaster en CDP
+```
+
+#### 3. "Invalid signature"
+```bash
+# Regenerar credenciales de asociación
+# Ve a base.dev/account-association
+```
+
+#### 4. "CORS errors"
+```javascript
+// next.config.js
+module.exports = {
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+        ],
+      },
+    ]
+  },
+}
+```
+
+## 📈 Próximos Pasos
+
+### Características Futuras
+
+- [ ] Sistema de reventa P2P
+- [ ] Subastas de boletos
+- [ ] Programa de lealtad con puntos
+- [ ] Integración con eventos de Eventbrite
+- [ ] QR codes dinámicos
+- [ ] Notificaciones push
+- [ ] Historial de asistencia como POAPs
+
+### Optimizaciones
+
+- [ ] Implementar caché con Redis
+- [ ] Optimizar imágenes con Next.js Image
+- [ ] Lazy loading de componentes
+- [ ] PWA support
+- [ ] Offline mode con service workers
+
+## 📚 Recursos
+
+### Documentación
+
+- [MiniKit Docs](https://docs.base.org/minikit)
+- [OnchainKit](https://onchainkit.xyz)
+- [Base Documentation](https://docs.base.org)
+- [Wagmi Documentation](https://wagmi.sh)
+- [Viem Documentation](https://viem.sh)
+
+### Ejemplos
+
+- [MiniKit Examples](https://github.com/coinbase/minikit-examples)
+- [OnchainKit Templates](https://github.com/coinbase/onchainkit-templates)
+- [Base App Examples](https://github.com/base-org/base-app-examples)
+
+### Comunidad
+
+- [Base Discord](https://discord.gg/base)
+- [Base Builders Telegram](https://t.me/basebuilders)
+- [Twitter/X](https://twitter.com/base)
+
+## 🤝 Contribuir
+
+¡Las contribuciones son bienvenidas! Por favor:
+
+1. Fork el proyecto
+2. Crea tu feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la branch (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📄 Licencia
+
+Este proyecto está bajo la licencia MIT. Ver [LICENSE](LICENSE) para más detalles.
+
+## 🙏 Agradecimientos
+
+- [Base](https://base.org) por la infraestructura L2
+- [Coinbase](https://coinbase.com) por OnchainKit y MiniKit
+- [OpenZeppelin](https://openzeppelin.com) por los contratos seguros
+- La comunidad de builders de Base
 
 ---
 
-## 🌐 **Deployment**
+## Scripts de Utilidad
 
-### **Frontend (Vercel)**
-1. Connect your GitHub repository to Vercel
-2. Configure environment variables in Vercel dashboard
-3. Deploy automatically on every push to main branch
-
-### **Smart Contracts**
+### setup.sh
 ```bash
-# Deploy to Base Sepolia (testnet)
-npx hardhat run scripts/deploy-all.js --network baseSepolia
+#!/bin/bash
 
-# Deploy to Base Mainnet
-npx hardhat run scripts/deploy-all.js --network base
+# Script de configuración inicial
+echo "🚀 Configurando TickBase Mini App..."
+
+# Instalar dependencias
+echo "📦 Instalando dependencias..."
+npm install
+
+# Crear archivo .env.local
+echo "🔑 Creando archivo de configuración..."
+cat > .env.local << EOL
+NEXT_PUBLIC_ONCHAINKIT_API_KEY=
+NEXT_PUBLIC_PAYMASTER_URL=
+NEXT_PUBLIC_CONTRACT_ADDRESS=
+NEXT_PUBLIC_CHAIN_ID=84532
+BASESCAN_API_KEY=
+EOL
+
+echo "✅ Configuración inicial completa!"
+echo "📝 Por favor, agrega tus API keys en .env.local"
 ```
 
-### **Database (Supabase/Neon)**
-1. Create a PostgreSQL database
-2. Update `DATABASE_URL` in environment variables
-3. Run migrations: `npx prisma db push`
-
----
-
-## 🔒 **Security Features**
-
-### **Smart Contract Security**
-- ✅ **OpenZeppelin Standards**: Battle-tested security patterns
-- ✅ **Reentrancy Protection**: Prevents reentrancy attacks
-- ✅ **Access Control**: Role-based permissions
-- ✅ **Input Validation**: Comprehensive parameter checking
-- ✅ **Pausable Contracts**: Emergency stop functionality
-
-### **Application Security**
-- ✅ **Input Sanitization**: XSS and injection prevention
-- ✅ **Rate Limiting**: API abuse protection
-- ✅ **CORS Configuration**: Secure cross-origin requests
-- ✅ **JWT Authentication**: Secure session management
-- ✅ **Environment Variables**: Sensitive data protection
-
----
-
-## 📱 **Progressive Web App Features**
-
-- **Offline Support**: Core functionality without internet
-- **Install Prompt**: Native app-like installation
-- **Push Notifications**: Real-time event updates
-- **Background Sync**: Automatic data synchronization
-- **Responsive Design**: Optimized for all screen sizes
-
----
-
-## 🧪 **Testing**
-
-### **Smart Contract Testing**
+### deploy.sh
 ```bash
-# Run all contract tests
+#!/bin/bash
+
+# Script de deployment
+echo "🚀 Deploying TickBase..."
+
+# Build
+echo "🔨 Building application..."
+npm run build
+
+# Deploy to Vercel
+echo "☁️ Deploying to Vercel..."
+vercel --prod
+
+echo "✅ Deployment complete!"
+```
+
+### test.sh
+```bash
+#!/bin/bash
+
+# Script de testing
+echo "🧪 Running tests..."
+
+# Contract tests
+echo "📝 Testing smart contracts..."
 npx hardhat test
 
-# Run specific test file
-npx hardhat test test/TicketNFT.test.js
-
-# Run with coverage
-npx hardhat coverage
-```
-
-### **Frontend Testing**
-```bash
-# Run unit tests
+# Component tests
+echo "🎨 Testing components..."
 npm run test
 
-# Run e2e tests
+# E2E tests
+echo "🔍 Running E2E tests..."
 npm run test:e2e
 
-# Run with coverage
-npm run test:coverage
+echo "✅ All tests passed!"
 ```
 
 ---
 
-## 🤝 **Contributing**
-
-We welcome contributions from the community! Here's how you can help:
-
-### **Ways to Contribute**
-- 🐛 **Bug Reports**: Found a bug? Let us know!
-- 💡 **Feature Requests**: Have an idea? We'd love to hear it!
-- 🔧 **Code Contributions**: Submit pull requests
-- 📚 **Documentation**: Help improve our docs
-- 🎨 **Design**: Contribute to UI/UX improvements
-
-### **Development Workflow**
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m 'Add amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
-
-### **Code Standards**
-- Follow TypeScript best practices
-- Use ESLint and Prettier for code formatting
-- Write comprehensive tests for new features
-- Update documentation for API changes
-
----
-
-## 📄 **License**
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🆘 **Support & Community**
-
-### **Get Help**
-- 📖 **Documentation**: [docs.tickbase.xyz](https://docs.tickbase.xyz)
-- 💬 **Discord Community**: [discord.gg/tickbase](https://discord.gg/tickbase)
-- 📧 **Email Support**: support@tickbase.xyz
-- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/your-username/tickbase-nft-marketplace/issues)
-
-### **Stay Updated**
-- 🐦 **Twitter**: [@TickBaseApp](https://twitter.com/TickBaseApp)
-- 📺 **YouTube**: [TickBase Channel](https://youtube.com/@tickbase)
-- 📰 **Blog**: [blog.tickbase.xyz](https://blog.tickbase.xyz)
-
----
-
-## 🙏 **Acknowledgments**
-
-### **Core Technologies**
-- **Base Network** - For providing the perfect L2 infrastructure
-- **Vercel** - For seamless deployment and hosting
-- **Next.js Team** - For the amazing React framework
-- **OpenZeppelin** - For secure smart contract standards
-
-### **Community**
-- **Web3 Developers** - For continuous innovation and support
-- **Base Ecosystem** - For building the future of blockchain
-- **Open Source Community** - For making this project possible
-
----
-
-## 🚀 **Roadmap**
-
-### **Phase 1: Foundation** ✅
-- [x] Core NFT ticketing system
-- [x] Base Network integration
-- [x] Basic marketplace functionality
-- [x] Mobile-responsive design
-
-### **Phase 2: Enhancement** 🚧
-- [ ] Advanced analytics dashboard
-- [ ] Mobile app (React Native)
-- [ ] API for third-party integrations
-
-### **Phase 3: Scale** 📋
-- [ ] Enterprise features
-- [ ] White-label solutions
-- [ ] Advanced AI recommendations
-- [ ] Global event partnerships
-
----
-
-<div align="center">
-
-**Built with ❤️ for the future of event ticketing**
-
-[![Star on GitHub](https://img.shields.io/github/stars/your-username/tickbase-nft-marketplace?style=social)](https://github.com/your-username/tickbase-nft-marketplace)
-[![Follow on Twitter](https://img.shields.io/twitter/follow/TickBaseApp?style=social)](https://twitter.com/TickBaseApp)
-
-**⭐ Star this repository if you find it helpful!**
-
-</div>
+**Built with ❤️ for the Base ecosystem**
