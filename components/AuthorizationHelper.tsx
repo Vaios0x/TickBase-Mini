@@ -116,7 +116,7 @@ export function AuthorizationHelper() {
           <li>Ve a &quot;My Apps&quot; o &quot;Developer Dashboard&quot;</li>
           <li>Busca &quot;TickBase&quot; en tus aplicaciones</li>
           <li>Haz clic en &quot;Settings&quot; o &quot;Configuration&quot;</li>
-          <li>En "Allowed URLs" agrega:
+          <li>En &quot;Allowed URLs&quot; agrega:
             <ul style={{ marginTop: '4px', paddingLeft: '16px' }}>
               <li><code style={{ background: '#333', padding: '1px 3px', borderRadius: '2px' }}>https://tickbase-miniapp.vercel.app</code></li>
               <li><code style={{ background: '#333', padding: '1px 3px', borderRadius: '2px' }}>https://www.base.dev/preview?url=https://tickbase-miniapp.vercel.app</code></li>
