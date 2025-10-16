@@ -4,12 +4,16 @@
   "description": "Marketplace de boletos NFT como Base Mini App",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3000",
+    "dev:extensions": "node scripts/dev-with-extensions.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "deploy": "vercel --prod",
+    "deploy:base": "node scripts/deploy-to-base.js",
+    "verify:base": "node scripts/verify-base-integration.js",
+    "screenshots": "node scripts/generate-screenshots.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
