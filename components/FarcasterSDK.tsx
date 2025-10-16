@@ -131,7 +131,7 @@ export function FarcasterSDK() {
     }, 5000)
     
     return () => clearTimeout(timeout)
-  }, [])
+  }, [isReady])
 
   // Mostrar splash screen hasta que esté listo
   if (!isReady) {

@@ -113,9 +113,9 @@ export function AuthorizationHelper() {
         <ol style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', lineHeight: '1.4' }}>
           <li>Ve a <a href="https://www.base.dev" target="_blank" rel="noopener noreferrer" style={{ color: '#00d4aa' }}>https://www.base.dev</a></li>
           <li>Inicia sesión con tu wallet</li>
-          <li>Ve a "My Apps" o "Developer Dashboard"</li>
-          <li>Busca "TickBase" en tus aplicaciones</li>
-          <li>Haz clic en "Settings" o "Configuration"</li>
+          <li>Ve a &quot;My Apps&quot; o &quot;Developer Dashboard&quot;</li>
+          <li>Busca &quot;TickBase&quot; en tus aplicaciones</li>
+          <li>Haz clic en &quot;Settings&quot; o &quot;Configuration&quot;</li>
           <li>En "Allowed URLs" agrega:
             <ul style={{ marginTop: '4px', paddingLeft: '16px' }}>
               <li><code style={{ background: '#333', padding: '1px 3px', borderRadius: '2px' }}>https://tickbase-miniapp.vercel.app</code></li>
