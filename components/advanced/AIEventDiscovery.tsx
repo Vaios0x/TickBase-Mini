@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Search, Sparkles, TrendingUp, Star, Filter } from 'lucide-react'
+import { EventDetailsModal } from '@/components/tickets/EventDetailsModal'
 
 interface EventRecommendation {
   id: number
@@ -11,6 +12,7 @@ interface EventRecommendation {
   venue: string
   image: string
   category: string
+  available: number
   aiScore: number
   reason: string
   trending: boolean
@@ -21,6 +23,7 @@ export function AIEventDiscovery() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [isLoading, setIsLoading] = useState(false)
+  const [selectedEvent, setSelectedEvent] = useState<EventRecommendation | null>(null)
 
   const categories = [
     { id: 'all', label: 'Todos', icon: '🎯' },
@@ -39,46 +42,193 @@ export function AIEventDiscovery() {
     // Simular carga de recomendaciones IA
     await new Promise(resolve => setTimeout(resolve, 1000))
     
-    const mockRecommendations: EventRecommendation[] = [
+    // Todos los eventos disponibles (mismos que en TicketList)
+    const allEvents = [
       {
         id: 1,
-        name: "Concierto de Jazz Intimate",
-        date: "2025-01-20",
-        price: "0.04",
-        venue: "Blue Note Club",
-        image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400",
-        category: "music",
-        aiScore: 95,
-        reason: "Basado en tu historial de jazz y eventos íntimos",
-        trending: true
+        name: "Concierto de Rock",
+        date: "2025-11-15",
+        price: "0.05",
+        venue: "Estadio Nacional",
+        image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400",
+        available: 50,
+        category: "music"
       },
       {
         id: 2,
-        name: "Tech Conference 2025",
-        date: "2025-02-15",
-        price: "0.06",
-        venue: "Convention Center",
-        image: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=400",
-        category: "tech",
-        aiScore: 88,
-        reason: "Coincide con tu interés en blockchain y Web3",
-        trending: false
+        name: "Festival de Música Electrónica",
+        date: "2025-12-20",
+        price: "0.08",
+        venue: "Centro de Convenciones",
+        image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400",
+        available: 100,
+        category: "music"
       },
       {
         id: 3,
-        name: "Fútbol Clásico",
-        date: "2025-01-25",
+        name: "Conferencia de Blockchain",
+        date: "2026-01-10",
+        price: "0.03",
+        venue: "Centro de Convenciones",
+        image: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=400",
+        available: 200,
+        category: "tech"
+      },
+      {
+        id: 4,
+        name: "Partido de Fútbol - Clásico",
+        date: "2025-11-25",
         price: "0.12",
         venue: "Estadio Monumental",
         image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=400",
-        category: "sports",
-        aiScore: 82,
-        reason: "Evento trending en tu región",
-        trending: true
+        available: 25,
+        category: "sports"
+      },
+      {
+        id: 5,
+        name: "Festival de Jazz",
+        date: "2025-12-14",
+        price: "0.07",
+        venue: "Teatro Municipal",
+        image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400",
+        available: 80,
+        category: "music"
+      },
+      {
+        id: 6,
+        name: "Exposición de Arte Digital",
+        date: "2026-01-05",
+        price: "0.04",
+        venue: "Museo de Arte Moderno",
+        image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400",
+        available: 150,
+        category: "art"
+      },
+      {
+        id: 7,
+        name: "Conferencia de IA y Machine Learning",
+        date: "2025-12-28",
+        price: "0.06",
+        venue: "Centro de Innovación",
+        image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400",
+        available: 120,
+        category: "tech"
+      },
+      {
+        id: 8,
+        name: "Festival de Cine Independiente",
+        date: "2026-01-15",
+        price: "0.09",
+        venue: "Cine Paradiso",
+        image: "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=400",
+        available: 60,
+        category: "art"
+      },
+      {
+        id: 9,
+        name: "Concierto de Música Clásica",
+        date: "2025-11-30",
+        price: "0.11",
+        venue: "Auditorio Nacional",
+        image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400",
+        available: 90,
+        category: "music"
+      },
+      {
+        id: 10,
+        name: "Workshop de NFT y Arte Digital",
+        date: "2025-12-05",
+        price: "0.05",
+        venue: "Galería Digital",
+        image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400",
+        available: 40,
+        category: "tech"
+      },
+      {
+        id: 11,
+        name: "Torneo de Esports",
+        date: "2026-01-20",
+        price: "0.08",
+        venue: "Arena Gaming",
+        image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400",
+        available: 200,
+        category: "sports"
+      },
+      {
+        id: 12,
+        name: "Festival de Comedia Stand-up",
+        date: "2025-12-10",
+        price: "0.06",
+        venue: "Teatro de la Risa",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
+        available: 75,
+        category: "art"
       }
     ]
 
-    setRecommendations(mockRecommendations)
+    // Generar recomendaciones con IA simulada
+    const generateAIRecommendations = (events: any[]) => {
+      return events.map(event => {
+        // Simular algoritmo de IA para calcular score
+        let aiScore = Math.floor(Math.random() * 30) + 70 // 70-100
+        let reason = ""
+        let trending = Math.random() > 0.6
+
+        // Lógica de recomendación basada en categoría
+        if (event.category === "music") {
+          aiScore = Math.floor(Math.random() * 20) + 80 // 80-100 para música
+          reason = "Basado en tu historial de eventos musicales y preferencias de entretenimiento"
+        } else if (event.category === "tech") {
+          aiScore = Math.floor(Math.random() * 25) + 75 // 75-100 para tech
+          reason = "Coincide con tu interés en tecnología y blockchain"
+        } else if (event.category === "sports") {
+          aiScore = Math.floor(Math.random() * 30) + 70 // 70-100 para deportes
+          reason = "Evento deportivo trending que podría interesarte"
+        } else if (event.category === "art") {
+          aiScore = Math.floor(Math.random() * 25) + 75 // 75-100 para arte
+          reason = "Basado en tu apreciación por el arte y la cultura"
+        }
+
+        // Ajustar score basado en disponibilidad
+        if (event.available < 50) {
+          aiScore += 5 // Bonus por eventos con poca disponibilidad
+          reason += " - ¡Pocos tickets disponibles!"
+        }
+
+        // Ajustar score basado en precio
+        if (parseFloat(event.price) <= 0.05) {
+          aiScore += 3 // Bonus por eventos económicos
+        }
+
+        return {
+          ...event,
+          aiScore: Math.min(aiScore, 100),
+          reason,
+          trending
+        }
+      })
+    }
+
+    // Filtrar eventos basado en búsqueda y categoría
+    let filteredEvents = allEvents
+
+    if (searchQuery) {
+      filteredEvents = filteredEvents.filter(event => 
+        event.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        event.venue.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    }
+
+    if (selectedCategory !== 'all') {
+      filteredEvents = filteredEvents.filter(event => event.category === selectedCategory)
+    }
+
+    // Generar recomendaciones y ordenar por score
+    const recommendations = generateAIRecommendations(filteredEvents)
+      .sort((a, b) => b.aiScore - a.aiScore)
+      .slice(0, 12) // Mostrar hasta 12 recomendaciones
+
+    setRecommendations(recommendations)
     setIsLoading(false)
   }
 
@@ -133,16 +283,32 @@ export function AIEventDiscovery() {
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           <div className="bg-white/10 rounded-lg p-3">
-            <div className="text-purple-400 font-medium">Preferencias</div>
-            <div className="text-white/70">Jazz, Tech, Deportes</div>
+            <div className="text-purple-400 font-medium">Preferencias Detectadas</div>
+            <div className="text-white/70">Música (40%), Tech (35%), Arte (25%)</div>
           </div>
           <div className="bg-white/10 rounded-lg p-3">
-            <div className="text-purple-400 font-medium">Tendencia</div>
-            <div className="text-white/70">Eventos íntimos en alza</div>
+            <div className="text-purple-400 font-medium">Tendencia Actual</div>
+            <div className="text-white/70">Eventos NFT y Web3 en alza</div>
           </div>
           <div className="bg-white/10 rounded-lg p-3">
-            <div className="text-purple-400 font-medium">Precio Óptimo</div>
-            <div className="text-white/70">0.04 - 0.08 ETH</div>
+            <div className="text-purple-400 font-medium">Rango de Precio Óptimo</div>
+            <div className="text-white/70">0.03 - 0.08 ETH</div>
+          </div>
+        </div>
+        
+        {/* Estadísticas adicionales */}
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg p-3">
+            <div className="text-blue-400 font-medium text-xs">Eventos Disponibles</div>
+            <div className="text-white font-bold text-lg">{recommendations.length}</div>
+          </div>
+          <div className="bg-gradient-to-r from-green-500/20 to-cyan-500/20 rounded-lg p-3">
+            <div className="text-green-400 font-medium text-xs">Score Promedio IA</div>
+            <div className="text-white font-bold text-lg">
+              {recommendations.length > 0 
+                ? Math.round(recommendations.reduce((acc, rec) => acc + rec.aiScore, 0) / recommendations.length)
+                : 0}%
+            </div>
           </div>
         </div>
       </div>
@@ -206,7 +372,10 @@ export function AIEventDiscovery() {
 
                   <div className="flex items-center justify-between">
                     <div className="text-2xl font-bold text-blue-400">{event.price} ETH</div>
-                    <button className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-purple-600 hover:to-blue-600 transition-all">
+                    <button 
+                      onClick={() => setSelectedEvent(event)}
+                      className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-purple-600 hover:to-blue-600 transition-all"
+                    >
                       Ver detalles
                     </button>
                   </div>
@@ -216,6 +385,19 @@ export function AIEventDiscovery() {
           </div>
         )}
       </div>
+
+      {/* Event Details Modal */}
+      {selectedEvent && (
+        <EventDetailsModal
+          event={selectedEvent}
+          onClose={() => setSelectedEvent(null)}
+          onPurchase={(event) => {
+            setSelectedEvent(null)
+            // Aquí podrías agregar lógica para abrir el modal de compra
+            console.log('Comprar evento:', event)
+          }}
+        />
+      )}
     </div>
   )
 }

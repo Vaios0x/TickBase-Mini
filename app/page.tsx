@@ -68,7 +68,7 @@ export default function Home() {
 
       {/* Navigation Tabs */}
       <div className="container mx-auto p-4 relative z-10">
-        <div className="flex neural-glass-card rounded-lg p-1 mb-6 neural-interactive">
+        <div className="flex gap-2 neural-glass-card rounded-lg p-2 mb-6 neural-interactive">
           {[
             { id: 'tickets', label: 'Tickets', icon: '🎫' },
             { id: 'ai', label: 'AI Discovery', icon: '🤖' },
@@ -81,7 +81,7 @@ export default function Home() {
               className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all neural-button ${
                 activeTab === tab.id
                   ? 'bg-blue-600 text-white'
-                  : 'text-white/70 hover:text-white'
+                  : 'text-white/70 hover:text-white hover:bg-white/10'
               }`}
             >
               <span>{tab.icon}</span>
