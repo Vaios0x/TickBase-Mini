@@ -69,10 +69,10 @@ export default function Home() {
       <div className="container mx-auto p-4 relative z-10">
         <div className="flex neural-glass-card rounded-lg p-1 mb-6 neural-interactive">
           {[
-            { id: 'tickets', label: '🎫 Tickets', icon: '🎫' },
-            { id: 'ai', label: '🤖 AI Discovery', icon: '🤖' },
-            { id: 'defi', label: '💰 DeFi', icon: '💰' },
-            { id: 'scanner', label: '📱 Scanner', icon: '📱' }
+            { id: 'tickets', label: 'Tickets', icon: '🎫' },
+            { id: 'ai', label: 'AI Discovery', icon: '🤖' },
+            { id: 'defi', label: 'DeFi', icon: '💰' },
+            { id: 'scanner', label: 'Scanner', icon: '📱' }
           ].map((tab) => (
             <button
               key={tab.id}
