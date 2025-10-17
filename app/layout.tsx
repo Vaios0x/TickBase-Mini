@@ -2,9 +2,20 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
-import { FarcasterSDK } from '@/components/FarcasterSDK'
-import { FarcasterDebug } from '@/components/FarcasterDebug'
-import { AuthorizationHelper } from '@/components/AuthorizationHelper'
+import dynamic from 'next/dynamic'
+
+// Importar componentes dinámicamente para evitar errores de hidratación
+const FarcasterSDK = dynamic(() => import('@/components/FarcasterSDK').then(mod => ({ default: mod.FarcasterSDK })), {
+  ssr: false
+})
+
+const FarcasterDebug = dynamic(() => import('@/components/FarcasterDebug').then(mod => ({ default: mod.FarcasterDebug })), {
+  ssr: false
+})
+
+const AuthorizationHelper = dynamic(() => import('@/components/AuthorizationHelper').then(mod => ({ default: mod.AuthorizationHelper })), {
+  ssr: false
+})
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -47,7 +58,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning={true}>
         <FarcasterSDK />
         <FarcasterDebug />
         <AuthorizationHelper />

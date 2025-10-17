@@ -5,8 +5,11 @@ import { useEffect, useState } from 'react'
 export function AuthorizationHelper() {
   const [showHelper, setShowHelper] = useState(false)
   const [hasAuthError, setHasAuthError] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
+    setIsMounted(true)
+    
     // Escuchar errores de autorización en la consola
     const originalError = console.error
     const originalLog = console.log
@@ -49,7 +52,7 @@ export function AuthorizationHelper() {
     }
   }, [])
 
-  if (!hasAuthError && !showHelper) {
+  if (!isMounted || (!hasAuthError && !showHelper)) {
     return null
   }
 

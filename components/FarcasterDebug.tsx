@@ -12,8 +12,11 @@ export function FarcasterDebug() {
   const [debugLogs, setDebugLogs] = useState<DebugInfo[]>([])
   const [isVisible, setIsVisible] = useState(false)
   const [sdkStatus, setSdkStatus] = useState<string>('Checking...')
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
+    setIsMounted(true)
+    
     const addLog = (message: string, type: DebugInfo['type'] = 'info') => {
       const newLog: DebugInfo = {
         timestamp: new Date().toLocaleTimeString(),
@@ -97,8 +100,8 @@ export function FarcasterDebug() {
     return () => clearInterval(interval)
   }, [])
 
-  if (process.env.NODE_ENV === 'production') {
-    return null // No mostrar debug en producción
+  if (process.env.NODE_ENV === 'production' || !isMounted) {
+    return null // No mostrar debug en producción o antes de montar
   }
 
   return (
