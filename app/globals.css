@@ -910,3 +910,131 @@
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
+
+/* Neon Text Effects */
+.neon-text {
+  font-size: 4rem;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: linear-gradient(45deg, #ff69b4, #00ff00, #ff0000, #0000ff, #ffff00, #ff00ff, #00ffff, #ff8000);
+  background-size: 800% 800%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: neon-pulse 2s ease-in-out infinite, neon-rainbow 3s linear infinite;
+  text-shadow: 
+    0 0 10px currentColor,
+    0 0 20px currentColor,
+    0 0 30px currentColor,
+    0 0 40px currentColor;
+  filter: drop-shadow(0 0 20px currentColor);
+}
+
+@keyframes neon-pulse {
+  0%, 100% { 
+    opacity: 0.8; 
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.05);
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes neon-gradient {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes neon-rainbow {
+  0% { 
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  12.5% { 
+    background-position: 12.5% 50%;
+    filter: hue-rotate(45deg) brightness(1.2);
+  }
+  25% { 
+    background-position: 25% 50%;
+    filter: hue-rotate(90deg) brightness(1);
+  }
+  37.5% { 
+    background-position: 37.5% 50%;
+    filter: hue-rotate(135deg) brightness(1.2);
+  }
+  50% { 
+    background-position: 50% 50%;
+    filter: hue-rotate(180deg) brightness(1);
+  }
+  62.5% { 
+    background-position: 62.5% 50%;
+    filter: hue-rotate(225deg) brightness(1.2);
+  }
+  75% { 
+    background-position: 75% 50%;
+    filter: hue-rotate(270deg) brightness(1);
+  }
+  87.5% { 
+    background-position: 87.5% 50%;
+    filter: hue-rotate(315deg) brightness(1.2);
+  }
+  100% { 
+    background-position: 100% 50%;
+    filter: hue-rotate(360deg) brightness(1);
+  }
+}
+
+.neon-glow {
+  animation: neon-glow-pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes neon-glow-pulse {
+  0% { 
+    text-shadow: 
+      0 0 5px #ff69b4,
+      0 0 10px #00ff00,
+      0 0 15px #ff0000,
+      0 0 20px #0000ff;
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  25% { 
+    text-shadow: 
+      0 0 10px #ffff00,
+      0 0 20px #ff00ff,
+      0 0 30px #00ffff,
+      0 0 40px #ff8000;
+    filter: hue-rotate(90deg) brightness(1.2);
+  }
+  50% { 
+    text-shadow: 
+      0 0 15px #ff69b4,
+      0 0 30px #00ff00,
+      0 0 45px #ff0000,
+      0 0 60px #0000ff;
+    filter: hue-rotate(180deg) brightness(1);
+  }
+  75% { 
+    text-shadow: 
+      0 0 20px #ffff00,
+      0 0 40px #ff00ff,
+      0 0 60px #00ffff,
+      0 0 80px #ff8000;
+    filter: hue-rotate(270deg) brightness(1.2);
+  }
+  100% { 
+    text-shadow: 
+      0 0 25px #ff69b4,
+      0 0 50px #00ff00,
+      0 0 75px #ff0000,
+      0 0 100px #0000ff;
+    filter: hue-rotate(360deg) brightness(1);
+  }
+}

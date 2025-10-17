@@ -106,19 +106,20 @@ export default function Home() {
             <div>
               {/* Mostrar mensaje de bienvenida solo si no hay wallet conectado */}
               {!isConnected && (
-                <div className="text-center py-8 mb-6">
-                  <div className="neural-glass-card rounded-xl p-6 max-w-2xl mx-auto neural-interactive">
-                    <h2 className="text-2xl font-bold neural-text-effect mb-3">
-                      🎫 Bienvenido a TickBase
-                    </h2>
-                    <p className="text-white/70 mb-4">
-                      Explora todas las características. Conecta tu wallet para transacciones completas.
+                <div className="text-center py-12 mb-8">
+                  <div className="neural-glass-card rounded-xl p-8 max-w-4xl mx-auto neural-interactive">
+                    <h1 className="neon-text neon-glow mb-6">
+                      TickBase
+                    </h1>
+                    <p className="text-white/80 text-lg mb-6 max-w-2xl mx-auto">
+                      La plataforma NFT más avanzada para boletos de eventos. 
+                      Explora todas las características sin límites.
                     </p>
-                    <div className="flex flex-wrap gap-2 justify-center text-sm">
-                      <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full">✅ Explorar Tickets</span>
-                      <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full">✅ AI Discovery</span>
-                      <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full">✅ DeFi Features</span>
-                      <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full">✅ Scanner QR</span>
+                    <div className="flex flex-wrap gap-3 justify-center text-sm">
+                      <span className="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full border border-blue-500/30 neural-glow">🎫 Explorar Tickets</span>
+                      <span className="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full border border-purple-500/30 neural-glow">🤖 AI Discovery</span>
+                      <span className="px-4 py-2 bg-green-500/20 text-green-300 rounded-full border border-green-500/30 neural-glow">💰 DeFi Features</span>
+                      <span className="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-full border border-orange-500/30 neural-glow">📱 Scanner QR</span>
                     </div>
                   </div>
                 </div>
