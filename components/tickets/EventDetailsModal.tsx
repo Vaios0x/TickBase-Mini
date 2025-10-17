@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { X, Calendar, MapPin, Clock, Users, Star, Share2, Heart, Ticket, Shield, Zap, Globe } from 'lucide-react'
+import { TicketLoaderFullScreen } from '@/components/ui/TicketLoader'
 
 interface Event {
   id: number
@@ -28,6 +29,7 @@ interface EventDetailsModalProps {
 export function EventDetailsModal({ event, onClose, onPurchase }: EventDetailsModalProps) {
   const [isLiked, setIsLiked] = useState(false)
   const [isShared, setIsShared] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleShare = async () => {
     if (navigator.share) {
@@ -47,7 +49,12 @@ export function EventDetailsModal({ event, onClose, onPurchase }: EventDetailsMo
 
   const handlePurchase = () => {
     if (onPurchase) {
-      onPurchase(event)
+      setIsLoading(true)
+      // Simular un pequeño delay para mostrar el loader
+      setTimeout(() => {
+        onPurchase(event)
+        setIsLoading(false)
+      }, 500)
     }
   }
 
@@ -227,6 +234,11 @@ export function EventDetailsModal({ event, onClose, onPurchase }: EventDetailsMo
           </div>
         </div>
       </div>
+      
+      {/* Loading Overlay */}
+      {isLoading && (
+        <TicketLoaderFullScreen text="Preparando compra..." />
+      )}
     </div>
   )
 }

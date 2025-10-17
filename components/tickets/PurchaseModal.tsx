@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { X, CreditCard, Shield, Zap, Wallet, CheckCircle, AlertCircle } from 'lucide-react'
+import { TicketLoaderFullScreen } from '@/components/ui/TicketLoader'
 
 interface Ticket {
   id: number
@@ -190,9 +191,7 @@ export function PurchaseModal({ ticket, onClose }: PurchaseModalProps) {
           <div className="space-y-4">
             {isProcessing ? (
               <div className="text-center py-6">
-                <div className="neural-loading-ring mx-auto mb-3"></div>
-                <h3 className="text-lg font-semibold text-white mb-2">Procesando Compra</h3>
-                <p className="text-white/70 text-sm">Confirmando transacción en Base...</p>
+                <TicketLoaderFullScreen text="Procesando compra en Base..." />
               </div>
             ) : (
               <div className="text-center py-6">
