@@ -5,10 +5,6 @@ import { Providers } from './providers'
 import { FarcasterSDK } from '@/components/FarcasterSDK'
 import { FarcasterDebug } from '@/components/FarcasterDebug'
 import { AuthorizationHelper } from '@/components/AuthorizationHelper'
-import { FarcasterWalletConnector } from '@/components/FarcasterWalletConnector'
-import { FarcasterAuthKit } from '@/components/FarcasterAuthKit'
-import { ClientOnly } from '@/components/ClientOnly'
-import { ErrorBoundary } from '@/components/ErrorBoundary'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -52,18 +48,12 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={inter.className}>
-        <ErrorBoundary>
-          <ClientOnly>
-            <FarcasterSDK />
-            <FarcasterDebug />
-            <AuthorizationHelper />
-            <FarcasterWalletConnector />
-            <FarcasterAuthKit />
-          </ClientOnly>
-          <Providers>
-            {children}
-          </Providers>
-        </ErrorBoundary>
+        <FarcasterSDK />
+        <FarcasterDebug />
+        <AuthorizationHelper />
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )
