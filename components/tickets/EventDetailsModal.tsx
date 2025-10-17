@@ -48,6 +48,7 @@ export function EventDetailsModal({ event, onClose }: EventDetailsModalProps) {
 
   const handlePurchase = () => {
     setShowPurchaseModal(true)
+    onClose() // Cerrar el modal de detalles
   }
 
   const handleClosePurchase = () => {
