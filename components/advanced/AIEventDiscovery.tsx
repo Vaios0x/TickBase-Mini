@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Search, Sparkles, TrendingUp, Star, Filter } from 'lucide-react'
 import { EventDetailsModal } from '@/components/tickets/EventDetailsModal'
+import { PurchaseModal } from '@/components/tickets/PurchaseModal'
 
 interface EventRecommendation {
   id: number
@@ -24,6 +25,8 @@ export function AIEventDiscovery() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [isLoading, setIsLoading] = useState(false)
   const [selectedEvent, setSelectedEvent] = useState<EventRecommendation | null>(null)
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false)
+  const [purchaseEvent, setPurchaseEvent] = useState<EventRecommendation | null>(null)
 
   const categories = [
     { id: 'all', label: 'Todos', icon: '🎯' },
@@ -331,16 +334,16 @@ export function AIEventDiscovery() {
           <TrendingUp className="w-5 h-5 text-purple-400" />
           Insights de IA
         </h3>
-         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-           <div className="bg-white/10 rounded-lg p-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div className="bg-white/10 rounded-lg p-3">
              <div className="text-purple-400 font-medium">Preferencias Detectadas</div>
              <div className="text-white/70">Música (45%), Tech (35%), Otros (20%)</div>
-           </div>
-           <div className="bg-white/10 rounded-lg p-3">
+          </div>
+          <div className="bg-white/10 rounded-lg p-3">
              <div className="text-purple-400 font-medium">Tendencia Actual</div>
              <div className="text-white/70">Eventos blockchain y música en alza</div>
-           </div>
-           <div className="bg-white/10 rounded-lg p-3">
+          </div>
+          <div className="bg-white/10 rounded-lg p-3">
              <div className="text-purple-400 font-medium">Rango de Precio Óptimo</div>
              <div className="text-white/70">0.03 - 0.08 ETH</div>
            </div>
@@ -443,8 +446,19 @@ export function AIEventDiscovery() {
           onClose={() => setSelectedEvent(null)}
           onPurchase={(event) => {
             setSelectedEvent(null)
-            // Aquí podrías agregar lógica para abrir el modal de compra
-            console.log('Comprar evento:', event)
+            setPurchaseEvent(event as EventRecommendation)
+            setShowPurchaseModal(true)
+          }}
+        />
+      )}
+
+      {/* Purchase Modal */}
+      {showPurchaseModal && purchaseEvent && (
+        <PurchaseModal
+          ticket={purchaseEvent}
+          onClose={() => {
+            setShowPurchaseModal(false)
+            setPurchaseEvent(null)
           }}
         />
       )}

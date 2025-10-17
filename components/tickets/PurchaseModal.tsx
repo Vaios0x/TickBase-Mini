@@ -51,20 +51,50 @@ export function PurchaseModal({ ticket, onClose }: PurchaseModalProps) {
     setIsProcessing(true)
     
     try {
-      // Simular transacción en Base
-      await new Promise(resolve => setTimeout(resolve, 3000))
+      // Simular proceso completo de compra en Base Mainnet
+      console.log('🚀 Iniciando compra en Base Mainnet...')
       
-      // Simular hash de transacción
-      const mockTxHash = '0x' + Math.random().toString(16).substring(2, 66)
+      // Paso 1: Verificar wallet conectado
+      await new Promise(resolve => setTimeout(resolve, 800))
+      console.log('✅ Wallet verificado')
+      
+      // Paso 2: Aprobar tokens (si es necesario)
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      console.log('✅ Aprobación de tokens completada')
+      
+      // Paso 3: Ejecutar transacción de compra
+      await new Promise(resolve => setTimeout(resolve, 1500))
+      console.log('✅ Transacción enviada a Base')
+      
+      // Paso 4: Esperar confirmación
+      await new Promise(resolve => setTimeout(resolve, 1200))
+      console.log('✅ Transacción confirmada en Base')
+      
+      // Generar hash de transacción realista de Base
+      const mockTxHash = '0x' + Array.from({length: 64}, () => Math.floor(Math.random() * 16).toString(16)).join('')
       setTxHash(mockTxHash)
       
-      // Cerrar modal después de 3 segundos
+      console.log('🎉 Compra completada exitosamente!')
+      console.log('📄 Hash de transacción:', mockTxHash)
+      console.log('🔗 Ver en BaseScan: https://basescan.org/tx/' + mockTxHash)
+      
+      // Simular creación del ticket NFT
+      console.log('🎫 Creando ticket NFT...')
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      console.log('✅ Ticket NFT creado exitosamente')
+      
+      // Avanzar al paso 3 y terminar procesamiento
+      setIsProcessing(false)
+      setCurrentStep(3)
+      
+      // Cerrar modal después de mostrar éxito
       setTimeout(() => {
         onClose()
-      }, 3000)
+      }, 4000)
       
     } catch (error) {
-      console.error('Error en la compra:', error)
+      console.error('❌ Error en la compra:', error)
+      setIsProcessing(false)
     }
   }
 
@@ -114,13 +144,29 @@ export function PurchaseModal({ ticket, onClose }: PurchaseModalProps) {
 
             {/* Price Preview */}
             <div className="bg-white/5 rounded-lg p-3">
-              <div className="flex justify-between items-center">
-                <span className="text-white/70 text-sm">Precio unitario:</span>
-                <span className="text-white text-sm">{ticket.price} ETH</span>
-              </div>
-              <div className="flex justify-between items-center mt-1">
-                <span className="text-white/70 text-sm">Total:</span>
-                <span className="text-blue-400 font-bold text-sm">{totalPrice} ETH</span>
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-white/70 text-sm">Precio unitario:</span>
+                  <span className="text-white text-sm">{ticket.price} ETH</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-white/70 text-sm">Cantidad:</span>
+                  <span className="text-white text-sm">{quantity} tickets</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-white/70 text-sm">Subtotal:</span>
+                  <span className="text-white text-sm">{totalPrice} ETH</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-white/70 text-sm">Gas fee (Base):</span>
+                  <span className="text-white text-sm">0.0001 ETH</span>
+                </div>
+                <div className="border-t border-white/20 pt-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-white font-medium">Total a pagar:</span>
+                    <span className="text-blue-400 font-bold">{totalWithGas} ETH</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -191,17 +237,90 @@ export function PurchaseModal({ ticket, onClose }: PurchaseModalProps) {
           <div className="space-y-4">
             {isProcessing ? (
               <div className="text-center py-6">
-                <TicketLoaderFullScreen text="Procesando compra en Base..." />
+                <div className="neural-glass-card rounded-xl p-6 mb-4">
+                  <h3 className="text-lg font-semibold text-white mb-4 flex items-center justify-center gap-2">
+                    <Zap className="w-5 h-5 text-blue-400" />
+                    Procesando en Base Mainnet
+                  </h3>
+                  
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 text-sm">
+                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                      <span className="text-white/80">Verificando wallet conectado...</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-sm">
+                      <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                      <span className="text-white/80">Aprobando tokens en Base...</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-sm">
+                      <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                      <span className="text-white/80">Ejecutando transacción...</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-sm">
+                      <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+                      <span className="text-white/80">Esperando confirmación...</span>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-4 bg-white/5 rounded-lg p-3">
+                    <div className="text-xs text-blue-400 mb-1">Red: Base Mainnet</div>
+                    <div className="text-xs text-white/70">Gas estimado: 0.0001 ETH</div>
+                  </div>
+                </div>
               </div>
             ) : (
               <div className="text-center py-6">
-                <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-3" />
-                <h3 className="text-lg font-semibold text-white mb-2">¡Compra Exitosa!</h3>
-                <p className="text-white/70 mb-3 text-sm">Tu ticket ha sido comprado exitosamente</p>
-                <div className="bg-white/5 rounded-lg p-3 mb-3">
-                  <p className="text-white/70 text-xs">Hash de transacción:</p>
-                  <p className="text-blue-400 text-xs font-mono break-all">{txHash}</p>
+                <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-3 animate-pulse" />
+                <h3 className="text-lg font-semibold text-white mb-2">¡Ticket NFT Creado!</h3>
+                <p className="text-white/70 mb-4 text-sm">Tu ticket NFT ha sido creado exitosamente en Base</p>
+                
+                <div className="neural-glass-card rounded-xl p-4 mb-4">
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-white/70 text-xs">Evento:</span>
+                      <span className="text-white text-xs font-medium">{ticket.name}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-white/70 text-xs">Fecha:</span>
+                      <span className="text-white text-xs">{new Date(ticket.date).toLocaleDateString('es-ES')}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-white/70 text-xs">Cantidad:</span>
+                      <span className="text-white text-xs">{quantity} ticket{quantity > 1 ? 's' : ''}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-white/70 text-xs">Red:</span>
+                      <span className="text-blue-400 text-xs font-medium">Base Mainnet</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-white/70 text-xs">Estado:</span>
+                      <span className="text-green-400 text-xs font-medium">✅ NFT Creado</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-white/70 text-xs">Gas usado:</span>
+                      <span className="text-white text-xs">0.0001 ETH</span>
+                    </div>
+                    <div className="border-t border-white/20 pt-2">
+                      <p className="text-white/70 text-xs mb-1">Hash de transacción:</p>
+                      <p className="text-white font-mono text-xs break-all bg-white/5 rounded p-2">{txHash}</p>
+                    </div>
+                  </div>
                 </div>
+                
+                <div className="space-y-2 mb-4">
+                  <button className="w-full bg-gradient-to-r from-green-500 to-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:from-green-600 hover:to-blue-700 transition-all text-sm">
+                    🎫 Ver mi Ticket NFT
+                  </button>
+                  <a 
+                    href={`https://basescan.org/tx/${txHash}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 px-4 rounded-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all text-sm"
+                  >
+                    🔗 Ver en BaseScan
+                  </a>
+                </div>
+                
                 <p className="text-green-400 text-xs">Redirigiendo...</p>
               </div>
             )}

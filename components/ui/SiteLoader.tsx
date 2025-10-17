@@ -119,10 +119,10 @@ export function SiteLoader({ isLoading, text = 'Cargando TickBase...' }: SiteLoa
 
         {/* Loading Text */}
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-white mb-2 neural-gradient-text">
+          <h2 className="text-lg font-bold text-white mb-2 neural-gradient-text">
             TickBase
           </h2>
-          <p className="text-white/80 text-sm font-medium mb-3">{text}</p>
+          <p className="text-white/80 text-xs font-medium mb-3">{text}</p>
           <div className="flex items-center justify-center space-x-1">
             <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" style={{ animationDuration: '0.8s' }} />
             <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '150ms', animationDuration: '0.8s' }} />
