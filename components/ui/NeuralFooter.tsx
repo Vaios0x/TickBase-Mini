@@ -128,6 +128,17 @@ export function NeuralFooter() {
             </div>
             
             <div className="flex items-center gap-2 text-sm text-white/60">
+              <span>Hecho por</span>
+              <a 
+                href="https://x.com/vaiossx" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:text-white transition-colors neural-interactive"
+              >
+                <div className="w-4 h-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-sm"></div>
+                <span className="font-semibold">vaios.base.eth</span>
+              </a>
+              <span>•</span>
               <span>Powered by</span>
               <div className="flex items-center gap-1">
                 <div className="w-4 h-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-sm"></div>
