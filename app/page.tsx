@@ -10,6 +10,7 @@ import { DeFiFeatures } from '@/components/advanced/DeFiFeatures'
 import { ValidationScanner } from '@/components/tickets/ValidationScanner'
 import { NeuralBackground } from '@/components/ui/NeuralBackground'
 import { NeuralEffects } from '@/components/ui/NeuralEffects'
+import { NeuralFooter } from '@/components/ui/NeuralFooter'
 import { Ticket, User, QrCode } from 'lucide-react'
 
 export default function Home() {
@@ -32,7 +33,7 @@ export default function Home() {
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold neural-gradient-text flex items-center gap-2">
             <Ticket className="w-8 h-8 text-blue-400" />
-            TickBase Mini App
+            TickBase
           </h1>
           
           <div className="flex items-center gap-3" suppressHydrationWarning>
@@ -133,6 +134,9 @@ export default function Home() {
             </div>
           )}
         </main>
+
+        {/* Neural Footer */}
+        <NeuralFooter />
       </div>
     </div>
   )
