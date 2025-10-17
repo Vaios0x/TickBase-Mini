@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { X, Calendar, MapPin, Clock, Users, Star, Share2, Heart, Ticket, Shield, Zap, Globe } from 'lucide-react'
-import { PurchaseModal } from './PurchaseModal'
 
 interface Event {
   id: number
@@ -23,12 +22,12 @@ interface Event {
 interface EventDetailsModalProps {
   event: Event
   onClose: () => void
+  onPurchase?: (event: Event) => void
 }
 
-export function EventDetailsModal({ event, onClose }: EventDetailsModalProps) {
+export function EventDetailsModal({ event, onClose, onPurchase }: EventDetailsModalProps) {
   const [isLiked, setIsLiked] = useState(false)
   const [isShared, setIsShared] = useState(false)
-  const [showPurchaseModal, setShowPurchaseModal] = useState(false)
 
   const handleShare = async () => {
     if (navigator.share) {
@@ -47,12 +46,9 @@ export function EventDetailsModal({ event, onClose }: EventDetailsModalProps) {
   }
 
   const handlePurchase = () => {
-    setShowPurchaseModal(true)
-    onClose() // Cerrar el modal de detalles
-  }
-
-  const handleClosePurchase = () => {
-    setShowPurchaseModal(false)
+    if (onPurchase) {
+      onPurchase(event)
+    }
   }
 
   const formatDate = (dateString: string) => {
@@ -231,14 +227,6 @@ export function EventDetailsModal({ event, onClose }: EventDetailsModalProps) {
           </div>
         </div>
       </div>
-
-      {/* Purchase Modal */}
-      {showPurchaseModal && (
-        <PurchaseModal
-          ticket={event}
-          onClose={handleClosePurchase}
-        />
-      )}
     </div>
   )
 }

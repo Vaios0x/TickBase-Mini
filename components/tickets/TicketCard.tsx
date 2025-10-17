@@ -96,6 +96,10 @@ export function TicketCard({ ticket, onSelect }: TicketCardProps) {
         <EventDetailsModal
           event={ticket}
           onClose={() => setShowDetailsModal(false)}
+          onPurchase={(event) => {
+            setShowDetailsModal(false)
+            setShowPurchaseModal(true)
+          }}
         />
       )}
     </>
