@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
 import { ConnectWallet } from '@coinbase/onchainkit/wallet'
 import Link from 'next/link'
@@ -16,6 +16,11 @@ export default function Home() {
   const { connect } = useConnect()
   const { disconnect } = useDisconnect()
   const [activeTab, setActiveTab] = useState<'tickets' | 'ai' | 'defi' | 'scanner'>('tickets')
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   return (
     <div className="min-h-screen relative">
@@ -28,8 +33,8 @@ export default function Home() {
             TickBase Mini App
           </h1>
           
-          <div className="flex items-center gap-3">
-            {isConnected && (
+          <div className="flex items-center gap-3" suppressHydrationWarning>
+            {isMounted && isConnected && (
               <Link
                 href="/my-tickets"
                 className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
@@ -39,7 +44,7 @@ export default function Home() {
               </Link>
             )}
             
-            {isConnected ? (
+            {isMounted && isConnected ? (
               <div className="flex items-center gap-3">
                 <div className="text-white/70 text-sm">
                   {address?.slice(0, 6)}...{address?.slice(-4)}
@@ -52,7 +57,7 @@ export default function Home() {
                 </button>
               </div>
             ) : (
-              <ConnectWallet />
+              isMounted && <ConnectWallet />
             )}
           </div>
         </div>
@@ -83,8 +88,18 @@ export default function Home() {
         </div>
 
         {/* Main Content */}
-        <main className="relative z-10">
-          {!isConnected ? (
+        <main className="relative z-10" suppressHydrationWarning>
+          {!isMounted ? (
+            <div className="text-center py-20">
+              <div className="neural-glass-card rounded-xl p-8 max-w-md mx-auto">
+                <div className="animate-pulse">
+                  <div className="h-8 bg-white/20 rounded mb-4"></div>
+                  <div className="h-4 bg-white/10 rounded mb-2"></div>
+                  <div className="h-4 bg-white/10 rounded"></div>
+                </div>
+              </div>
+            </div>
+          ) : !isConnected ? (
             <div className="text-center py-20">
               <h2 className="text-3xl font-bold neural-gradient-text mb-4">
                 Bienvenido a TickBase
