@@ -47,7 +47,7 @@ export function FarcasterWalletConnector() {
 
         addDebugLog('📱 Farcaster environment detected')
 
-        // Verificar contexto de Farcaster
+        // Verificar contexto de Farcaster (PRIORIDAD)
         try {
           const context = await sdk.context
           if (context) {
@@ -56,6 +56,7 @@ export function FarcasterWalletConnector() {
             
             if (context.user) {
               addDebugLog('🎉 User is logged in to Farcaster')
+              addDebugLog('💡 Using Farcaster wallet (recomendado)')
               setWalletState(prev => ({
                 ...prev,
                 isConnected: true,
@@ -63,18 +64,21 @@ export function FarcasterWalletConnector() {
                 chainId: 'farcaster',
                 error: null
               }))
+              return // No buscar wallet externo si Farcaster está disponible
             } else {
               addDebugLog('⚠️ User not logged in to Farcaster')
+              addDebugLog('💡 Please log in to Farcaster for best experience')
               setWalletState(prev => ({
                 ...prev,
-                error: 'Please log in to Farcaster first'
+                error: 'Please log in to Farcaster first (recomendado)'
               }))
             }
           } else {
             addDebugLog('❌ No Farcaster context available')
+            addDebugLog('💡 Opening from Farcaster app is recommended')
             setWalletState(prev => ({
               ...prev,
-              error: 'Farcaster context not available'
+              error: 'Farcaster context not available - open from Farcaster app'
             }))
           }
         } catch (contextError) {
@@ -85,14 +89,16 @@ export function FarcasterWalletConnector() {
           }))
         }
 
-        // Verificar si hay wallet externo disponible
+        // Verificar wallet externo como FALLBACK (solo si Farcaster no está disponible)
         if (typeof window !== 'undefined' && (window as any).ethereum) {
-          addDebugLog('🔗 External wallet detected (MetaMask, etc.)')
+          addDebugLog('🔗 External wallet detected (MetaMask) - usando como fallback')
+          addDebugLog('💡 Para mejor experiencia, usa Farcaster wallet')
           
           try {
             const accounts = await (window as any).ethereum.request({ method: 'eth_accounts' })
             if (accounts.length > 0) {
               addDebugLog(`✅ External wallet connected: ${accounts[0]}`)
+              addDebugLog('⚠️ Usando MetaMask como fallback')
               setWalletState(prev => ({
                 ...prev,
                 isConnected: true,
@@ -102,12 +108,14 @@ export function FarcasterWalletConnector() {
               }))
             } else {
               addDebugLog('⚠️ External wallet not connected')
+              addDebugLog('💡 Conecta MetaMask o usa Farcaster wallet')
             }
           } catch (walletError) {
             addDebugLog(`⚠️ External wallet error: ${walletError}`)
           }
         } else {
           addDebugLog('ℹ️ No external wallet detected')
+          addDebugLog('💡 Recomendado: usar Farcaster wallet')
         }
 
       } catch (error) {
