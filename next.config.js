@@ -65,7 +65,7 @@ const nextConfig = {
         headers: [
           {
             key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
+            value: 'ALLOWALL',
           },
           {
             key: 'X-Content-Type-Options',
