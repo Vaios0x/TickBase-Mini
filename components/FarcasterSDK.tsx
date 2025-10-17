@@ -52,7 +52,13 @@ export function FarcasterSDK() {
             if (errorMessage.includes('authorized') || 
                 errorMessage.includes('authorization')) {
               addDebugLog('🔐 Authorization error detected')
-              addDebugLog('💡 Run: node scripts/authorize-base-build.js for help')
+              
+              // Solo mostrar ayuda si NO estamos en localhost
+              if (!window.location.hostname.includes('localhost')) {
+                addDebugLog('💡 Run: node scripts/authorize-base-build.js for help')
+              } else {
+                addDebugLog('ℹ️ Localhost: Este error es normal en desarrollo')
+              }
             }
             
             // Continuar sin SDK en Base Build

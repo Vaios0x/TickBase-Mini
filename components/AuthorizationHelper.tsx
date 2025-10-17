@@ -17,8 +17,11 @@ export function AuthorizationHelper() {
     console.error = (...args) => {
       const message = args.join(' ')
       if (message.includes('authorized') || message.includes('authorization')) {
-        setHasAuthError(true)
-        setShowHelper(true)
+        // Solo mostrar helper si NO estamos en localhost
+        if (!window.location.hostname.includes('localhost')) {
+          setHasAuthError(true)
+          setShowHelper(true)
+        }
       }
       originalError.apply(console, args)
     }
@@ -26,8 +29,11 @@ export function AuthorizationHelper() {
     console.log = (...args) => {
       const message = args.join(' ')
       if (message.includes('authorized') || message.includes('authorization')) {
-        setHasAuthError(true)
-        setShowHelper(true)
+        // Solo mostrar helper si NO estamos en localhost
+        if (!window.location.hostname.includes('localhost')) {
+          setHasAuthError(true)
+          setShowHelper(true)
+        }
       }
       originalLog.apply(console, args)
     }
