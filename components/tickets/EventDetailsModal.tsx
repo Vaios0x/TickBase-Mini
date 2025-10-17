@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { X, Calendar, MapPin, Clock, Users, Star, Share2, Heart, Ticket, Shield, Zap, Globe } from 'lucide-react'
+import { PurchaseModal } from './PurchaseModal'
 
 interface Event {
   id: number
@@ -27,6 +28,7 @@ interface EventDetailsModalProps {
 export function EventDetailsModal({ event, onClose }: EventDetailsModalProps) {
   const [isLiked, setIsLiked] = useState(false)
   const [isShared, setIsShared] = useState(false)
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false)
 
   const handleShare = async () => {
     if (navigator.share) {
@@ -42,6 +44,14 @@ export function EventDetailsModal({ event, onClose }: EventDetailsModalProps) {
         console.log('Error sharing:', error)
       }
     }
+  }
+
+  const handlePurchase = () => {
+    setShowPurchaseModal(true)
+  }
+
+  const handleClosePurchase = () => {
+    setShowPurchaseModal(false)
   }
 
   const formatDate = (dateString: string) => {
@@ -197,7 +207,10 @@ export function EventDetailsModal({ event, onClose }: EventDetailsModalProps) {
                 </div>
               </div>
 
-              <button className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white py-1.5 px-2 rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-1.5 text-xs">
+              <button 
+                onClick={handlePurchase}
+                className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white py-1.5 px-2 rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-1.5 text-xs"
+              >
                 <Ticket className="w-3 h-3" />
                 Comprar Ticket
               </button>
@@ -217,6 +230,14 @@ export function EventDetailsModal({ event, onClose }: EventDetailsModalProps) {
           </div>
         </div>
       </div>
+
+      {/* Purchase Modal */}
+      {showPurchaseModal && (
+        <PurchaseModal
+          ticket={event}
+          onClose={handleClosePurchase}
+        />
+      )}
     </div>
   )
 }
