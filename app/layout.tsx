@@ -5,6 +5,7 @@ import { Providers } from './providers'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import { ClientOnly } from '@/components/ClientOnly'
+import { SiteLoaderWrapper } from '@/components/ui/SiteLoaderWrapper'
 
 // Importar componentes dinámicamente para evitar errores de hidratación
 const FarcasterSDKInterceptor = dynamic(() => import('@/components/FarcasterSDKInterceptor').then(mod => ({ default: mod.FarcasterSDKInterceptor })), {
@@ -68,7 +69,9 @@ export default function RootLayout({
           </Suspense>
         </ClientOnly>
         <Providers>
-          {children}
+          <SiteLoaderWrapper>
+            {children}
+          </SiteLoaderWrapper>
         </Providers>
       </body>
     </html>

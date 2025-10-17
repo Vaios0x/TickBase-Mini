@@ -39,8 +39,8 @@ export function AIEventDiscovery() {
 
   const loadRecommendations = async () => {
     setIsLoading(true)
-    // Simular carga de recomendaciones IA
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    // Simular carga de recomendaciones IA con personalización
+    await new Promise(resolve => setTimeout(resolve, 1500))
     
     // Todos los eventos disponibles (mismos que en TicketList)
     const allEvents = [
@@ -154,50 +154,97 @@ export function AIEventDiscovery() {
         available: 200,
         category: "sports"
       },
-      {
-        id: 12,
-        name: "Festival de Comedia Stand-up",
-        date: "2025-12-10",
-        price: "0.06",
-        venue: "Teatro de la Risa",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
-        available: 75,
-        category: "art"
-      }
+       {
+         id: 12,
+         name: "Festival de Comedia Stand-up",
+         date: "2025-12-10",
+         price: "0.06",
+         venue: "Teatro de la Risa",
+         image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
+         available: 75,
+         category: "art"
+       },
+       {
+         id: 13,
+         name: "Conferencia de DeFi y Finanzas Descentralizadas",
+         date: "2026-02-15",
+         price: "0.09",
+         venue: "Centro Financiero Digital",
+         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400",
+         available: 85,
+         category: "tech"
+       },
+       {
+         id: 14,
+         name: "Festival de Danza Contemporánea",
+         date: "2026-01-25",
+         price: "0.08",
+         venue: "Teatro de Danza Moderna",
+         image: "https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=400",
+         available: 65,
+         category: "art"
+       }
     ]
 
-    // Generar recomendaciones con IA simulada
+    // Generar recomendaciones con IA simulada - ALGORITMO REALISTA
     const generateAIRecommendations = (events: any[]) => {
-      return events.map(event => {
-        // Simular algoritmo de IA para calcular score
-        let aiScore = Math.floor(Math.random() * 30) + 70 // 70-100
-        let reason = ""
-        let trending = Math.random() > 0.6
+      // Simular perfil de usuario consistente
+      const userProfile = {
+        favoriteCategories: ['music', 'tech'], // Categorías favoritas del usuario
+        preferredPriceRange: [0.03, 0.08], // Rango de precio preferido
+        alwaysRecommend: [1, 3, 5], // IDs de eventos que SIEMPRE se recomiendan
+        trendingBonus: [2, 7, 11] // IDs que reciben bonus por trending
+      }
 
-        // Lógica de recomendación basada en categoría
-        if (event.category === "music") {
-          aiScore = Math.floor(Math.random() * 20) + 80 // 80-100 para música
-          reason = "Basado en tu historial de eventos musicales y preferencias de entretenimiento"
-        } else if (event.category === "tech") {
-          aiScore = Math.floor(Math.random() * 25) + 75 // 75-100 para tech
-          reason = "Coincide con tu interés en tecnología y blockchain"
-        } else if (event.category === "sports") {
-          aiScore = Math.floor(Math.random() * 30) + 70 // 70-100 para deportes
-          reason = "Evento deportivo trending que podría interesarte"
-        } else if (event.category === "art") {
-          aiScore = Math.floor(Math.random() * 25) + 75 // 75-100 para arte
-          reason = "Basado en tu apreciación por el arte y la cultura"
+      return events.map(event => {
+        let aiScore = 50 // Score base
+        let reason = ""
+        let trending = false
+
+        // ALGORITMO CONSISTENTE: Eventos que SIEMPRE se recomiendan
+        if (userProfile.alwaysRecommend.includes(event.id)) {
+          aiScore = Math.floor(Math.random() * 15) + 85 // 85-100 para eventos favoritos
+          reason = "Basado en tu perfil y preferencias históricas"
+          trending = true
+        }
+        // ALGORITMO CONSISTENTE: Categorías favoritas del usuario
+        else if (userProfile.favoriteCategories.includes(event.category)) {
+          aiScore = Math.floor(Math.random() * 20) + 75 // 75-95 para categorías favoritas
+          reason = `Coincide con tu interés en ${event.category === 'music' ? 'música' : 'tecnología'}`
+        }
+        // ALGORITMO CONSISTENTE: Rango de precio preferido
+        else if (parseFloat(event.price) >= userProfile.preferredPriceRange[0] && 
+                 parseFloat(event.price) <= userProfile.preferredPriceRange[1]) {
+          aiScore = Math.floor(Math.random() * 25) + 70 // 70-95 para precio ideal
+          reason = "Dentro de tu rango de precio preferido"
+        }
+        // ALGORITMO CONSISTENTE: Eventos trending
+        else if (userProfile.trendingBonus.includes(event.id)) {
+          aiScore = Math.floor(Math.random() * 20) + 70 // 70-90 para trending
+          reason = "Evento trending que podría interesarte"
+          trending = true
+        }
+        // ALGORITMO CONSISTENTE: Otros eventos con score más bajo
+        else {
+          aiScore = Math.floor(Math.random() * 30) + 50 // 50-80 para otros
+          reason = "Evento que podría interesarte"
         }
 
-        // Ajustar score basado en disponibilidad
+        // Ajustes consistentes basados en disponibilidad
         if (event.available < 50) {
-          aiScore += 5 // Bonus por eventos con poca disponibilidad
+          aiScore += 8 // Bonus consistente por poca disponibilidad
           reason += " - ¡Pocos tickets disponibles!"
         }
 
-        // Ajustar score basado en precio
+        // Ajustes consistentes basados en precio económico
         if (parseFloat(event.price) <= 0.05) {
-          aiScore += 3 // Bonus por eventos económicos
+          aiScore += 5 // Bonus consistente por precio económico
+        }
+
+        // Bonus ocasional por "descubrimiento"
+        if (Math.random() > 0.8) {
+          aiScore += 10
+          reason += " - ¡Nuevo descubrimiento para ti!"
         }
 
         return {
@@ -226,7 +273,7 @@ export function AIEventDiscovery() {
     // Generar recomendaciones y ordenar por score
     const recommendations = generateAIRecommendations(filteredEvents)
       .sort((a, b) => b.aiScore - a.aiScore)
-      .slice(0, 12) // Mostrar hasta 12 recomendaciones
+      .slice(0, 7) // Mostrar solo 7 recomendaciones
 
     setRecommendations(recommendations)
     setIsLoading(false)
@@ -242,6 +289,9 @@ export function AIEventDiscovery() {
         <p className="text-white/70">
           Descubre eventos personalizados con inteligencia artificial
         </p>
+        <div className="text-xs text-purple-400 mt-2 animate-pulse">
+          🤖 Analizando tus preferencias y generando recomendaciones únicas...
+        </div>
       </div>
 
       {/* Search and Filters */}
@@ -281,20 +331,20 @@ export function AIEventDiscovery() {
           <TrendingUp className="w-5 h-5 text-purple-400" />
           Insights de IA
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-          <div className="bg-white/10 rounded-lg p-3">
-            <div className="text-purple-400 font-medium">Preferencias Detectadas</div>
-            <div className="text-white/70">Música (40%), Tech (35%), Arte (25%)</div>
-          </div>
-          <div className="bg-white/10 rounded-lg p-3">
-            <div className="text-purple-400 font-medium">Tendencia Actual</div>
-            <div className="text-white/70">Eventos NFT y Web3 en alza</div>
-          </div>
-          <div className="bg-white/10 rounded-lg p-3">
-            <div className="text-purple-400 font-medium">Rango de Precio Óptimo</div>
-            <div className="text-white/70">0.03 - 0.08 ETH</div>
-          </div>
-        </div>
+         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+           <div className="bg-white/10 rounded-lg p-3">
+             <div className="text-purple-400 font-medium">Preferencias Detectadas</div>
+             <div className="text-white/70">Música (45%), Tech (35%), Otros (20%)</div>
+           </div>
+           <div className="bg-white/10 rounded-lg p-3">
+             <div className="text-purple-400 font-medium">Tendencia Actual</div>
+             <div className="text-white/70">Eventos blockchain y música en alza</div>
+           </div>
+           <div className="bg-white/10 rounded-lg p-3">
+             <div className="text-purple-400 font-medium">Rango de Precio Óptimo</div>
+             <div className="text-white/70">0.03 - 0.08 ETH</div>
+           </div>
+         </div>
         
         {/* Estadísticas adicionales */}
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
