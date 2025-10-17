@@ -6,6 +6,7 @@ import { FarcasterSDK } from '@/components/FarcasterSDK'
 import { FarcasterDebug } from '@/components/FarcasterDebug'
 import { AuthorizationHelper } from '@/components/AuthorizationHelper'
 import { FarcasterWalletConnector } from '@/components/FarcasterWalletConnector'
+import { FarcasterAuthKit } from '@/components/FarcasterAuthKit'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -53,6 +54,7 @@ export default function RootLayout({
         <FarcasterDebug />
         <AuthorizationHelper />
         <FarcasterWalletConnector />
+        <FarcasterAuthKit />
         <Providers>
           {children}
         </Providers>
