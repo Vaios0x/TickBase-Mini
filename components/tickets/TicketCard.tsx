@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Calendar, MapPin, Users, ShoppingCart } from 'lucide-react'
 import { PurchaseModal } from './PurchaseModal'
+import { EventDetailsModal } from './EventDetailsModal'
 
 interface Ticket {
   id: number
@@ -21,6 +22,7 @@ interface TicketCardProps {
 
 export function TicketCard({ ticket, onSelect }: TicketCardProps) {
   const [showPurchaseModal, setShowPurchaseModal] = useState(false)
+  const [showDetailsModal, setShowDetailsModal] = useState(false)
 
   return (
     <>
@@ -74,7 +76,7 @@ export function TicketCard({ ticket, onSelect }: TicketCardProps) {
               Comprar
             </button>
             <button
-              onClick={onSelect}
+              onClick={() => setShowDetailsModal(true)}
               className="px-4 py-2 border border-white/30 text-white rounded-lg hover:bg-white/10 transition-colors"
             >
               Ver detalles
@@ -87,6 +89,13 @@ export function TicketCard({ ticket, onSelect }: TicketCardProps) {
         <PurchaseModal
           ticket={ticket}
           onClose={() => setShowPurchaseModal(false)}
+        />
+      )}
+
+      {showDetailsModal && (
+        <EventDetailsModal
+          event={ticket}
+          onClose={() => setShowDetailsModal(false)}
         />
       )}
     </>

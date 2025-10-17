@@ -906,6 +906,32 @@
   animation: neural-text-gradient 3s ease-in-out infinite;
 }
 
+/* Advanced Neural Effects for Event Details Modal */
+.neural-hologram {
+  position: relative;
+  overflow: hidden;
+}
+
+.neural-scan-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.neural-pulse {
+  animation: neural-pulse 2s ease-in-out infinite;
+}
+
+@keyframes neural-pulse {
+  0%, 100% { 
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
 @keyframes neural-text-gradient {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
