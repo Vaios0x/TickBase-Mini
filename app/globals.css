@@ -5,7 +5,10 @@
 /* Advanced Neural Glassmorphism Background */
 .neural-glass-bg {
   position: relative;
-  background: linear-gradient(135deg, #0a0b0d 0%, #1a1b2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
+  background: 
+    linear-gradient(135deg, #0a0b0d 0%, #1a1b2e 25%, #16213e 50%, #0f3460 75%, #533483 100%),
+    radial-gradient(ellipse at top, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom, rgba(255, 119, 198, 0.1) 0%, transparent 50%);
   overflow: hidden;
 }
 
@@ -17,9 +20,11 @@
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.4) 0%, transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.4) 0%, transparent 60%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 60%),
+    radial-gradient(circle at 60% 70%, rgba(255, 200, 100, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 90% 10%, rgba(100, 255, 150, 0.2) 0%, transparent 50%);
   animation: neural-pulse 8s ease-in-out infinite;
 }
 
@@ -31,8 +36,9 @@
   right: 0;
   bottom: 0;
   background: 
-    linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%),
-    linear-gradient(-45deg, transparent 30%, rgba(255, 255, 255, 0.03) 50%, transparent 70%);
+    linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.08) 50%, transparent 70%),
+    linear-gradient(-45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%),
+    linear-gradient(90deg, transparent 20%, rgba(120, 219, 255, 0.1) 50%, transparent 80%);
   animation: neural-shimmer 12s linear infinite;
 }
 
@@ -95,11 +101,84 @@
   right: 0;
   bottom: 0;
   background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(45deg, rgba(120, 219, 255, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px, 50px 50px, 25px 25px;
   animation: neural-grid-move 20s linear infinite;
-  opacity: 0.3;
+  opacity: 0.4;
+}
+
+/* Neural Energy Waves */
+.neural-wave {
+  position: absolute;
+  width: 200%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(120, 219, 255, 0.6), transparent);
+  animation: neural-wave 4s ease-in-out infinite;
+}
+
+.neural-wave:nth-child(2) {
+  animation-delay: 1s;
+  background: linear-gradient(90deg, transparent, rgba(255, 119, 198, 0.6), transparent);
+}
+
+.neural-wave:nth-child(3) {
+  animation-delay: 2s;
+  background: linear-gradient(90deg, transparent, rgba(100, 255, 150, 0.6), transparent);
+}
+
+/* Neural Orbs */
+.neural-orb {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(120, 219, 255, 0.3) 0%, transparent 70%);
+  animation: neural-orb 6s ease-in-out infinite;
+}
+
+.neural-orb:nth-child(2) {
+  background: radial-gradient(circle, rgba(255, 119, 198, 0.3) 0%, transparent 70%);
+  animation-delay: 2s;
+}
+
+.neural-orb:nth-child(3) {
+  background: radial-gradient(circle, rgba(100, 255, 150, 0.3) 0%, transparent 70%);
+  animation-delay: 4s;
+}
+
+/* Neural Connections */
+.neural-connection {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: neural-connection 3s ease-in-out infinite;
+}
+
+/* Neural Glow Effects */
+.neural-glow {
+  animation: neural-glow 3s ease-in-out infinite;
+}
+
+/* Neural Data Streams */
+.neural-data-stream {
+  position: absolute;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, rgba(120, 219, 255, 0.8), transparent);
+  animation: neural-float 8s linear infinite;
+}
+
+.neural-data-stream::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -1px;
+  width: 4px;
+  height: 4px;
+  background: rgba(120, 219, 255, 1);
+  border-radius: 50%;
+  animation: neural-glow 1s ease-in-out infinite;
 }
 
 /* Advanced Glassmorphism */
@@ -121,37 +200,136 @@
 
 /* Neural Animations */
 @keyframes neural-pulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.05); }
+  0%, 100% { 
+    opacity: 0.3; 
+    transform: scale(1) rotate(0deg); 
+  }
+  25% { 
+    opacity: 0.6; 
+    transform: scale(1.02) rotate(1deg); 
+  }
+  50% { 
+    opacity: 0.8; 
+    transform: scale(1.05) rotate(0deg); 
+  }
+  75% { 
+    opacity: 0.5; 
+    transform: scale(1.03) rotate(-1deg); 
+  }
 }
 
 @keyframes neural-shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% { 
+    transform: translateX(-100%) skewX(-15deg); 
+    opacity: 0.3; 
+  }
+  50% { 
+    opacity: 0.8; 
+  }
+  100% { 
+    transform: translateX(100%) skewX(-15deg); 
+    opacity: 0.3; 
+  }
 }
 
 @keyframes neural-sweep {
-  0% { left: -100%; }
-  50% { left: 100%; }
-  100% { left: 100%; }
+  0% { 
+    left: -100%; 
+    opacity: 0; 
+  }
+  50% { 
+    opacity: 1; 
+  }
+  100% { 
+    left: 100%; 
+    opacity: 0; 
+  }
 }
 
 @keyframes neural-float {
   0% { 
-    transform: translateY(100vh) rotate(0deg); 
+    transform: translateY(100vh) rotate(0deg) scale(0.5); 
     opacity: 0; 
   }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
+  10% { 
+    opacity: 1; 
+    transform: translateY(90vh) rotate(36deg) scale(1); 
+  }
+  50% { 
+    transform: translateY(50vh) rotate(180deg) scale(1.2); 
+  }
+  90% { 
+    opacity: 1; 
+    transform: translateY(10vh) rotate(324deg) scale(1); 
+  }
   100% { 
-    transform: translateY(-100px) rotate(360deg); 
+    transform: translateY(-100px) rotate(360deg) scale(0.5); 
     opacity: 0; 
   }
 }
 
 @keyframes neural-grid-move {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(50px, 50px); }
+  0% { 
+    transform: translate(0, 0) rotate(0deg); 
+    opacity: 0.3; 
+  }
+  50% { 
+    opacity: 0.6; 
+  }
+  100% { 
+    transform: translate(50px, 50px) rotate(1deg); 
+    opacity: 0.3; 
+  }
+}
+
+/* Nuevos efectos neurales */
+@keyframes neural-wave {
+  0%, 100% { 
+    transform: translateX(-50%) scaleY(1); 
+    opacity: 0.3; 
+  }
+  50% { 
+    transform: translateX(-50%) scaleY(1.5); 
+    opacity: 0.8; 
+  }
+}
+
+@keyframes neural-orb {
+  0% { 
+    transform: translate(-50%, -50%) scale(0.8) rotate(0deg); 
+    opacity: 0.4; 
+  }
+  50% { 
+    transform: translate(-50%, -50%) scale(1.2) rotate(180deg); 
+    opacity: 0.8; 
+  }
+  100% { 
+    transform: translate(-50%, -50%) scale(0.8) rotate(360deg); 
+    opacity: 0.4; 
+  }
+}
+
+@keyframes neural-connection {
+  0% { 
+    stroke-dasharray: 0 100; 
+    opacity: 0; 
+  }
+  50% { 
+    opacity: 1; 
+  }
+  100% { 
+    stroke-dasharray: 100 0; 
+    opacity: 0; 
+  }
+}
+
+@keyframes neural-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(120, 219, 255, 0.3); 
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(120, 219, 255, 0.6), 0 0 60px rgba(255, 119, 198, 0.4); 
+  }
 }
 
 /* Neural Gradient Text */
@@ -589,4 +767,146 @@
   .no-print {
     display: none !important;
   }
+}
+
+/* Efectos neurales adicionales */
+.neural-hologram {
+  position: relative;
+  background: linear-gradient(45deg, transparent 30%, rgba(120, 219, 255, 0.1) 50%, transparent 70%);
+  animation: neural-hologram 6s ease-in-out infinite;
+}
+
+@keyframes neural-hologram {
+  0%, 100% { 
+    opacity: 0.3; 
+    transform: translateX(-100%) skewX(-10deg); 
+  }
+  50% { 
+    opacity: 0.8; 
+    transform: translateX(100%) skewX(10deg); 
+  }
+}
+
+.neural-scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(120, 219, 255, 0.8), transparent);
+  animation: neural-scan 4s linear infinite;
+}
+
+@keyframes neural-scan {
+  0% { transform: translateY(-100vh); }
+  100% { transform: translateY(100vh); }
+}
+
+.neural-cyber-grid {
+  background-image: 
+    linear-gradient(rgba(120, 219, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 219, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: neural-cyber-grid 15s linear infinite;
+}
+
+@keyframes neural-cyber-grid {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(20px, 20px); }
+}
+
+.neural-energy-field {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), 
+    rgba(120, 219, 255, 0.2) 0%, 
+    rgba(255, 119, 198, 0.1) 30%, 
+    transparent 70%);
+  animation: neural-energy-field 8s ease-in-out infinite;
+}
+
+@keyframes neural-energy-field {
+  0%, 100% { 
+    --x: 20%; 
+    --y: 30%; 
+    opacity: 0.3; 
+  }
+  25% { 
+    --x: 80%; 
+    --y: 20%; 
+    opacity: 0.6; 
+  }
+  50% { 
+    --x: 60%; 
+    --y: 80%; 
+    opacity: 0.8; 
+  }
+  75% { 
+    --x: 30%; 
+    --y: 70%; 
+    opacity: 0.5; 
+  }
+}
+
+.neural-digital-rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(transparent 0%, rgba(0, 255, 0, 0.03) 50%, transparent 100%);
+  animation: neural-digital-rain 20s linear infinite;
+}
+
+@keyframes neural-digital-rain {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Efectos de hover neurales */
+.neural-interactive:hover {
+  animation: neural-interactive-glow 0.5s ease-in-out;
+}
+
+@keyframes neural-interactive-glow {
+  0% { 
+    box-shadow: 0 0 5px rgba(120, 219, 255, 0.3); 
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(120, 219, 255, 0.6), 0 0 30px rgba(255, 119, 198, 0.4); 
+  }
+  100% { 
+    box-shadow: 0 0 5px rgba(120, 219, 255, 0.3); 
+  }
+}
+
+/* Efectos de carga neural */
+.neural-loading-ring {
+  width: 60px;
+  height: 60px;
+  border: 3px solid rgba(120, 219, 255, 0.3);
+  border-top: 3px solid rgba(120, 219, 255, 1);
+  border-radius: 50%;
+  animation: neural-loading-ring 1s linear infinite;
+}
+
+@keyframes neural-loading-ring {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Efectos de texto neural */
+.neural-text-effect {
+  background: linear-gradient(45deg, #78dbff, #4facfe, #00d4aa, #ff77c6);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: neural-text-gradient 3s ease-in-out infinite;
+}
+
+@keyframes neural-text-gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }

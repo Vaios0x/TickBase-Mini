@@ -13,7 +13,35 @@ export function FarcasterSDK() {
 
   useEffect(() => {
     const initializeSDK = async () => {
+      // Verificar si estamos en el cliente
+      if (typeof window === 'undefined') {
+        return
+      }
+      
+      // Verificar inmediatamente si estamos en localhost
+      const isLocalhost = window.location.hostname.includes('localhost') || 
+                         window.location.hostname.includes('127.0.0.1')
+      
+      if (isLocalhost) {
+        addDebugLog('🚫 SDK deshabilitado para desarrollo local')
+        addDebugLog('ℹ️ Continuando en modo desarrollo sin SDK')
+        addDebugLog('💡 Para habilitar: npm run auth:base')
+        setIsReady(true)
+        return
+      }
+      
       addDebugLog('🚀 Initializing Farcaster SDK...')
+      
+      // Verificar si el SDK está deshabilitado por variables de entorno
+      const isSDKDisabled = process.env.NEXT_PUBLIC_DISABLE_FARCASTER_SDK === 'true' ||
+                           process.env.DISABLE_FARCASTER_SDK === 'true'
+      
+      if (isSDKDisabled) {
+        addDebugLog('🚫 SDK deshabilitado por configuración')
+        addDebugLog('ℹ️ Continuando sin SDK')
+        setIsReady(true)
+        return
+      }
       
       // Detectar si estamos en Base Build o Farcaster
       const isBaseBuild = typeof window !== 'undefined' && 
@@ -53,11 +81,14 @@ export function FarcasterSDK() {
                 errorMessage.includes('authorization')) {
               addDebugLog('🔐 Authorization error detected')
               
-              // Solo mostrar ayuda si NO estamos en localhost
-              if (!window.location.hostname.includes('localhost')) {
-                addDebugLog('💡 Run: node scripts/authorize-base-build.js for help')
+              // En localhost, simular que está listo para desarrollo
+              if (window.location.hostname.includes('localhost')) {
+                addDebugLog('ℹ️ Localhost: Simulando SDK listo para desarrollo')
+                addDebugLog('💡 Para producción, ejecuta: node scripts/authorize-base-build.js')
+                setIsReady(true)
+                return
               } else {
-                addDebugLog('ℹ️ Localhost: Este error es normal en desarrollo')
+                addDebugLog('💡 Run: node scripts/authorize-base-build.js for help')
               }
             }
             

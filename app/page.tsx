@@ -9,6 +9,7 @@ import { AIEventDiscovery } from '@/components/advanced/AIEventDiscovery'
 import { DeFiFeatures } from '@/components/advanced/DeFiFeatures'
 import { ValidationScanner } from '@/components/tickets/ValidationScanner'
 import { NeuralBackground } from '@/components/ui/NeuralBackground'
+import { NeuralEffects } from '@/components/ui/NeuralEffects'
 import { Ticket, User, QrCode } from 'lucide-react'
 
 export default function Home() {
@@ -25,8 +26,9 @@ export default function Home() {
   return (
     <div className="min-h-screen relative">
       <NeuralBackground />
+      <NeuralEffects />
       {/* Header */}
-      <header className="relative z-10 p-4 neural-glass-card border-b border-white/10">
+      <header className="relative z-10 p-4 neural-glass-card border-b border-white/10 neural-interactive">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold neural-gradient-text flex items-center gap-2">
             <Ticket className="w-8 h-8 text-blue-400" />
@@ -65,7 +67,7 @@ export default function Home() {
 
       {/* Navigation Tabs */}
       <div className="container mx-auto p-4 relative z-10">
-        <div className="flex neural-glass-card rounded-lg p-1 mb-6">
+        <div className="flex neural-glass-card rounded-lg p-1 mb-6 neural-interactive">
           {[
             { id: 'tickets', label: '🎫 Tickets', icon: '🎫' },
             { id: 'ai', label: '🤖 AI Discovery', icon: '🤖' },
@@ -99,34 +101,35 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          ) : !isConnected ? (
-            <div className="text-center py-20">
-              <h2 className="text-3xl font-bold neural-gradient-text mb-4">
-                Bienvenido a TickBase
-              </h2>
-              <p className="text-white/70 mb-8">
-                Conecta tu wallet para comenzar a comprar y vender boletos NFT
-              </p>
-              <div className="neural-glass-card rounded-xl p-8 max-w-md mx-auto">
-                <h3 className="text-xl font-bold text-white mb-4">
-                  🚀 Características Avanzadas
-                </h3>
-                <ul className="text-white/70 space-y-2 text-left">
-                  <li>✅ AI-Powered Event Discovery</li>
-                  <li>✅ Social Features con Farcaster</li>
-                  <li>✅ DeFi Integration (Staking, Liquidity)</li>
-                  <li>✅ One-Click Purchase Gasless</li>
-                  <li>✅ Dynamic Pricing Engine</li>
-                  <li>✅ Base Mini App Framework</li>
-                </ul>
-              </div>
-            </div>
           ) : (
             <div>
-              {activeTab === 'tickets' && <TicketList onSelectTicket={() => {}} />}
-              {activeTab === 'ai' && <AIEventDiscovery />}
-              {activeTab === 'defi' && <DeFiFeatures />}
-              {activeTab === 'scanner' && <ValidationScanner />}
+              {/* Mostrar mensaje de bienvenida solo si no hay wallet conectado */}
+              {!isConnected && (
+                <div className="text-center py-8 mb-6">
+                  <div className="neural-glass-card rounded-xl p-6 max-w-2xl mx-auto neural-interactive">
+                    <h2 className="text-2xl font-bold neural-text-effect mb-3">
+                      🎫 Bienvenido a TickBase
+                    </h2>
+                    <p className="text-white/70 mb-4">
+                      Explora todas las características. Conecta tu wallet para transacciones completas.
+                    </p>
+                    <div className="flex flex-wrap gap-2 justify-center text-sm">
+                      <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full">✅ Explorar Tickets</span>
+                      <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full">✅ AI Discovery</span>
+                      <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full">✅ DeFi Features</span>
+                      <span className="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full">✅ Scanner QR</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Contenido de las secciones - siempre visible */}
+              <div>
+                {activeTab === 'tickets' && <TicketList onSelectTicket={() => {}} />}
+                {activeTab === 'ai' && <AIEventDiscovery />}
+                {activeTab === 'defi' && <DeFiFeatures />}
+                {activeTab === 'scanner' && <ValidationScanner />}
+              </div>
             </div>
           )}
         </main>

@@ -1,0 +1,132 @@
+{
+  "rules": {
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "tailwind",
+          "apply",
+          "variants",
+          "responsive",
+          "screen",
+          "layer",
+          "keyframes",
+          "media",
+          "supports",
+          "document",
+          "page",
+          "font-face",
+          "charset",
+          "import",
+          "namespace"
+        ]
+      }
+    ],
+    "property-no-vendor-prefix": null,
+    "value-no-vendor-prefix": null,
+    "selector-no-vendor-prefix": null,
+    "media-feature-name-no-vendor-prefix": null,
+    "at-rule-no-vendor-prefix": null,
+    "declaration-no-important": null,
+    "selector-class-pattern": null,
+    "custom-property-pattern": null,
+    "keyframes-name-pattern": null,
+    "function-name-case": null,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": [
+          "global",
+          "local",
+          "hover",
+          "focus",
+          "active",
+          "disabled",
+          "enabled",
+          "checked",
+          "indeterminate",
+          "valid",
+          "invalid",
+          "required",
+          "optional",
+          "read-only",
+          "read-write",
+          "placeholder-shown",
+          "default",
+          "in-range",
+          "out-of-range",
+          "user-invalid",
+          "empty",
+          "target",
+          "root",
+          "first-child",
+          "last-child",
+          "first-of-type",
+          "last-of-type",
+          "only-child",
+          "only-of-type",
+          "nth-child",
+          "nth-last-child",
+          "nth-of-type",
+          "nth-last-of-type",
+          "lang",
+          "dir",
+          "any-link",
+          "link",
+          "visited",
+          "scope",
+          "current",
+          "past",
+          "future",
+          "playing",
+          "paused",
+          "seeking",
+          "buffering",
+          "stalled",
+          "muted",
+          "volume-locked",
+          "fullscreen",
+          "picture-in-picture",
+          "autofill",
+          "autofill-strong",
+          "autofill-weak",
+          "autofill-strong-password",
+          "autofill-strong-password-visible",
+          "autofill-strong-password-hidden",
+          "autofill-strong-password-visible-hidden",
+          "autofill-strong-password-hidden-visible",
+          "autofill-strong-password-visible-hidden-visible",
+          "autofill-strong-password-hidden-visible-hidden"
+        ]
+      }
+    ],
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": [
+          "global",
+          "local",
+          "before",
+          "after",
+          "first-line",
+          "first-letter",
+          "selection",
+          "backdrop",
+          "placeholder",
+          "marker",
+          "file-selector-button",
+          "part",
+          "slotted"
+        ]
+      }
+    ]
+  },
+  "ignoreFiles": [
+    "node_modules/**/*",
+    "dist/**/*",
+    "build/**/*",
+    ".next/**/*",
+    "public/**/*",
+    "css-lint-ignore.css"
+  ]
+}

@@ -3,19 +3,21 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
 import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
+import { ClientOnly } from '@/components/ClientOnly'
 
 // Importar componentes dinámicamente para evitar errores de hidratación
+const FarcasterSDKInterceptor = dynamic(() => import('@/components/FarcasterSDKInterceptor').then(mod => ({ default: mod.FarcasterSDKInterceptor })), {
+  ssr: false,
+  loading: () => null
+})
+
 const FarcasterSDK = dynamic(() => import('@/components/FarcasterSDK').then(mod => ({ default: mod.FarcasterSDK })), {
-  ssr: false
+  ssr: false,
+  loading: () => null
 })
 
-const FarcasterDebug = dynamic(() => import('@/components/FarcasterDebug').then(mod => ({ default: mod.FarcasterDebug })), {
-  ssr: false
-})
-
-const AuthorizationHelper = dynamic(() => import('@/components/AuthorizationHelper').then(mod => ({ default: mod.AuthorizationHelper })), {
-  ssr: false
-})
+// Componentes de debug removidos para producción
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -59,9 +61,12 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={inter.className} suppressHydrationWarning={true}>
-        <FarcasterSDK />
-        <FarcasterDebug />
-        <AuthorizationHelper />
+        <ClientOnly>
+          <Suspense fallback={null}>
+            <FarcasterSDKInterceptor />
+            <FarcasterSDK />
+          </Suspense>
+        </ClientOnly>
         <Providers>
           {children}
         </Providers>

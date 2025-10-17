@@ -1,0 +1,43 @@
+/* 
+ * Archivo de configuración para ignorar advertencias de CSS
+ * Este archivo contiene comentarios que ayudan al linter a entender
+ * que las reglas de Tailwind CSS son válidas
+ */
+
+/* Tailwind CSS Directives - Estas son válidas */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tailwind CSS @apply directive - Válida */
+.example {
+  @apply bg-blue-500 text-white p-4;
+}
+
+/* Tailwind CSS @layer directive - Válida */
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded;
+  }
+}
+
+/* Tailwind CSS @screen directive - Válida */
+@screen sm {
+  .responsive {
+    @apply text-sm;
+  }
+}
+
+/* Tailwind CSS @variants directive - Válida */
+@variants hover, focus {
+  .btn-hover {
+    @apply bg-blue-600;
+  }
+}
+
+/* Tailwind CSS @responsive directive - Válida */
+@responsive {
+  .responsive-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+  }
+}

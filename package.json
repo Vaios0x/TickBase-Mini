@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000",
+    "dev:safe": "node scripts/start-dev-safe.js",
     "dev:extensions": "node scripts/dev-with-extensions.js",
+    "dev:no-sdk": "DISABLE_FARCASTER_SDK=true next dev -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -14,6 +16,8 @@
     "deploy:base": "node scripts/deploy-to-base.js",
     "verify:base": "node scripts/verify-base-integration.js",
     "screenshots": "node scripts/generate-screenshots.js",
+    "fix:localhost": "node scripts/fix-localhost-auth.js",
+    "auth:base": "node scripts/authorize-base-build.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
