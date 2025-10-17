@@ -75,7 +75,7 @@ function LoginContent() {
             </p>
             {bio && (
               <p style={{ margin: '0 0 20px 0', fontSize: '14px', opacity: 0.8 }}>
-                "{bio}"
+                &quot;{bio}&quot;
               </p>
             )}
           </div>

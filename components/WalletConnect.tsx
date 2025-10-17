@@ -99,7 +99,7 @@ export function WalletConnect() {
     }
 
     initializeWallets()
-  }, [])
+  }, [walletState.isConnected])
 
   const connectWallet = async () => {
     setWalletState(prev => ({ ...prev, isConnecting: true, error: null }))
