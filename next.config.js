@@ -68,6 +68,10 @@ const nextConfig = {
             value: 'ALLOWALL',
           },
           {
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors *;",
+          },
+          {
             key: 'X-Content-Type-Options',
             value: 'nosniff',
           },
