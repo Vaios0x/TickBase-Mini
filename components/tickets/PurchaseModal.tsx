@@ -87,11 +87,6 @@ export function PurchaseModal({ ticket, onClose }: PurchaseModalProps) {
       setIsProcessing(false)
       setCurrentStep(3)
       
-      // Cerrar modal después de mostrar éxito
-      setTimeout(() => {
-        onClose()
-      }, 4000)
-      
     } catch (error) {
       console.error('❌ Error en la compra:', error)
       setIsProcessing(false)
@@ -307,21 +302,27 @@ export function PurchaseModal({ ticket, onClose }: PurchaseModalProps) {
                   </div>
                 </div>
                 
-                <div className="space-y-2 mb-4">
-                  <button className="w-full bg-gradient-to-r from-green-500 to-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:from-green-600 hover:to-blue-700 transition-all text-sm">
+                <div className="space-y-2 mb-6">
+                  <button 
+                    onClick={() => {
+                      // Simular navegación a la página de tickets del usuario
+                      console.log('🎫 Navegando a mis tickets...')
+                      // Aquí podrías navegar a /my-tickets o abrir un modal con el ticket
+                      alert('🎫 ¡Tu ticket NFT ha sido agregado a tu colección! Ve a "Mis Tickets" para verlo.')
+                    }}
+                    className="w-full bg-gradient-to-r from-green-500 to-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:from-green-600 hover:to-blue-700 transition-all text-sm"
+                  >
                     🎫 Ver mi Ticket NFT
                   </button>
                   <a 
                     href={`https://basescan.org/tx/${txHash}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 px-4 rounded-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all text-sm"
+                    className="block w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-4 rounded-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all text-sm"
                   >
                     🔗 Ver en BaseScan
                   </a>
                 </div>
-                
-                <p className="text-green-400 text-xs">Redirigiendo...</p>
               </div>
             )}
           </div>
@@ -334,7 +335,7 @@ export function PurchaseModal({ ticket, onClose }: PurchaseModalProps) {
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 z-50">
-      <div className="neural-glass-card rounded-xl max-w-sm sm:max-w-md w-full max-h-[95vh] overflow-y-auto">
+      <div className="neural-glass-card rounded-xl max-w-sm sm:max-w-md w-full max-h-[98vh] overflow-y-auto">
         <div className="p-4 sm:p-6">
           {/* Header */}
           <div className="flex justify-between items-center mb-6">
