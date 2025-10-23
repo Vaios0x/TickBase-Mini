@@ -76,14 +76,13 @@ export function FarcasterWalletConnector({ onWalletConnected }: FarcasterWalletC
     try {
       console.log('🔗 Conectando wallet en Farcaster...')
 
-      // En Farcaster, el wallet se conecta automáticamente
-      // Simulamos la conexión exitosa
-      const mockAddress = '0x' + Math.random().toString(16).substr(2, 40)
+      // En Farcaster, el usuario debe elegir conectar manualmente
+      // No simular conexión automática
+      console.log('📱 Usuario debe elegir conectar wallet manualmente')
       
-      setWalletAddress(mockAddress)
-      setIsConnected(true)
-      onWalletConnected?.(mockAddress)
-      console.log('✅ Wallet conectado (simulado):', mockAddress)
+      // Por ahora, no conectamos automáticamente
+      // El usuario debe hacer clic en el botón
+      setError('Por favor, usa el botón "Connect Wallet" de Coinbase para conectar tu wallet')
 
     } catch (error) {
       console.error('❌ Error conectando wallet:', error)

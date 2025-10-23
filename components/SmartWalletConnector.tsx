@@ -88,11 +88,21 @@ export function SmartWalletConnector({ onWalletConnected }: SmartWalletConnector
     return <FarcasterWalletConnector onWalletConnected={onWalletConnected} />
   }
 
-  // Mostrar solo el botón y la lista de wallets
+  // Mostrar opciones de wallet para que el usuario elija
   return (
-    <div className="text-center">
+    <div className="text-center space-y-3">
       <div className="text-green-300 text-sm mb-2">
-        MetaMask, Coinbase Wallet, Brave Wallet, etc.
+        Elige tu wallet preferido:
+      </div>
+      
+      <div className="space-y-2">
+        <div className="text-white/70 text-xs">
+          MetaMask, Coinbase Wallet, Brave Wallet, etc.
+        </div>
+        
+        <div className="text-blue-300 text-xs">
+          💡 Haz clic en "Connect Wallet" para ver todas las opciones
+        </div>
       </div>
     </div>
   )
