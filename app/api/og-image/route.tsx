@@ -45,16 +45,16 @@ export async function GET() {
           >
             NFT Ticket Marketplace
           </div>
-          <div
-            style={{
-              fontSize: 24,
-              color: '#ffffff',
-              maxWidth: '600px',
-              lineHeight: '1.4',
-            }}
-          >
-            Compra y vende boletos NFT con AI discovery, DeFi features y validación blockchain en Base
-          </div>
+                 <div
+                   style={{
+                     fontSize: 24,
+                     color: '#ffffff',
+                     maxWidth: '600px',
+                     lineHeight: '1.4',
+                   }}
+                 >
+                   Compra y vende boletos NFT con AI discovery y validación blockchain en Base
+                 </div>
         </div>
       </div>
     ),

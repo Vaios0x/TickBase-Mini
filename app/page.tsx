@@ -7,19 +7,22 @@ import { SmartWalletConnector } from '@/components/SmartWalletConnector'
 import Link from 'next/link'
 import { TicketList } from '@/components/tickets/TicketList'
 import { AIEventDiscovery } from '@/components/advanced/AIEventDiscovery'
-import { DeFiFeatures } from '@/components/advanced/DeFiFeatures'
 import { ValidationScanner } from '@/components/tickets/ValidationScanner'
 import { NeuralBackground } from '@/components/ui/NeuralBackground'
 import { NeuralEffects } from '@/components/ui/NeuralEffects'
 import { NeuralFooter } from '@/components/ui/NeuralFooter'
+import { Authentication } from '@/components/Authentication'
+import { NotificationCenter } from '@/components/notifications/NotificationCenter'
+import { FavoritesButton } from '@/components/tickets/FavoritesButton'
 import { Ticket, User, QrCode } from 'lucide-react'
 
 export default function Home() {
   const { address, isConnected } = useAccount()
   const { connect } = useConnect()
   const { disconnect } = useDisconnect()
-  const [activeTab, setActiveTab] = useState<'tickets' | 'ai' | 'defi' | 'scanner'>('tickets')
+  const [activeTab, setActiveTab] = useState<'tickets' | 'ai' | 'scanner'>('tickets')
   const [isMounted, setIsMounted] = useState(false)
+  const [authenticatedUser, setAuthenticatedUser] = useState<any>(null)
 
   useEffect(() => {
     setIsMounted(true)
@@ -38,6 +41,17 @@ export default function Home() {
           </h1>
           
           <div className="flex items-center gap-3" suppressHydrationWarning>
+            {/* Notificaciones */}
+            {isMounted && (isConnected || authenticatedUser) && (
+              <NotificationCenter 
+                userId={address} 
+                fid={authenticatedUser?.fid} 
+              />
+            )}
+            
+            {/* Botón de Favoritos - Solo visible con wallet conectado */}
+            {isMounted && isConnected && <FavoritesButton />}
+            
             {isMounted && isConnected && (
               <Link
                 href="/my-tickets"
@@ -78,13 +92,12 @@ export default function Home() {
 
       {/* Navigation Tabs */}
       <div className="container mx-auto p-4 relative z-10">
-        <div className="flex gap-2 neural-glass-card rounded-lg p-2 mb-6 neural-interactive">
-          {[
-            { id: 'tickets', label: 'Tickets', icon: '🎫' },
-            { id: 'ai', label: 'AI Discovery', icon: '🤖' },
-            { id: 'defi', label: 'DeFi', icon: '💰' },
-            { id: 'scanner', label: 'Scanner', icon: '📱' }
-          ].map((tab) => (
+            <div className="flex gap-2 neural-glass-card rounded-lg p-2 mb-6 neural-interactive">
+              {[
+                { id: 'tickets', label: 'Tickets', icon: '🎫' },
+                { id: 'ai', label: 'AI Discovery', icon: '🤖' },
+                { id: 'scanner', label: 'Scanner', icon: '📱' }
+              ].map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
@@ -115,7 +128,7 @@ export default function Home() {
           ) : (
             <div>
               {/* Mostrar mensaje de bienvenida solo si no hay wallet conectado */}
-              {!isConnected && (
+              {!isConnected && !authenticatedUser && (
                 <div className="text-center py-12 mb-8">
                   <div className="neural-glass-card rounded-xl p-8 max-w-4xl mx-auto neural-interactive">
                     <h1 className="neon-text neon-glow mb-6">
@@ -125,23 +138,29 @@ export default function Home() {
                       La plataforma NFT más avanzada para boletos de eventos. 
                       Explora todas las características sin límites.
                     </p>
-                    <div className="flex flex-wrap gap-3 justify-center text-sm">
-                      <span className="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full border border-blue-500/30 neural-glow">🎫 Explorar Tickets</span>
-                      <span className="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full border border-purple-500/30 neural-glow">🤖 AI Discovery</span>
-                      <span className="px-4 py-2 bg-green-500/20 text-green-300 rounded-full border border-green-500/30 neural-glow">💰 DeFi Features</span>
-                      <span className="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-full border border-orange-500/30 neural-glow">📱 Scanner QR</span>
+                           <div className="flex flex-wrap gap-3 justify-center text-sm mb-6">
+                             <span className="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full border border-blue-500/30 neural-glow">🎫 Explorar Tickets</span>
+                             <span className="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full border border-purple-500/30 neural-glow">🤖 AI Discovery</span>
+                             <span className="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-full border border-orange-500/30 neural-glow">📱 Scanner QR</span>
+                           </div>
+                    
+                    {/* Componente de autenticación */}
+                    <div className="max-w-md mx-auto">
+                      <Authentication 
+                        onUserAuthenticated={setAuthenticatedUser}
+                        onUserSignedOut={() => setAuthenticatedUser(null)}
+                      />
                     </div>
                   </div>
                 </div>
               )}
 
-              {/* Contenido de las secciones - siempre visible */}
-              <div>
-                {activeTab === 'tickets' && <TicketList onSelectTicket={() => {}} />}
-                {activeTab === 'ai' && <AIEventDiscovery />}
-                {activeTab === 'defi' && <DeFiFeatures />}
-                {activeTab === 'scanner' && <ValidationScanner />}
-              </div>
+                     {/* Contenido de las secciones - siempre visible */}
+                     <div>
+                       {activeTab === 'tickets' && <TicketList onSelectTicket={() => {}} />}
+                       {activeTab === 'ai' && <AIEventDiscovery />}
+                       {activeTab === 'scanner' && <ValidationScanner />}
+                     </div>
             </div>
           )}
         </main>

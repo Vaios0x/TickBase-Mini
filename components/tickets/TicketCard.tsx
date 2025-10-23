@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { Calendar, MapPin, Users, ShoppingCart } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Calendar, MapPin, Users, ShoppingCart, Heart } from 'lucide-react'
 import { PurchaseModal } from './PurchaseModal'
 import { EventDetailsModal } from './EventDetailsModal'
 
@@ -23,6 +23,41 @@ interface TicketCardProps {
 export function TicketCard({ ticket, onSelect }: TicketCardProps) {
   const [showPurchaseModal, setShowPurchaseModal] = useState(false)
   const [showDetailsModal, setShowDetailsModal] = useState(false)
+  const [isFavorite, setIsFavorite] = useState(false)
+
+  useEffect(() => {
+    // Verificar si el ticket está en favoritos
+    const savedFavorites = localStorage.getItem('tickbase-favorites')
+    if (savedFavorites) {
+      const favorites = JSON.parse(savedFavorites)
+      setIsFavorite(favorites.some((fav: Ticket) => fav.id === ticket.id))
+    }
+  }, [ticket.id])
+
+  const toggleFavorite = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    const savedFavorites = localStorage.getItem('tickbase-favorites')
+    let favorites = savedFavorites ? JSON.parse(savedFavorites) : []
+    
+    if (isFavorite) {
+      // Remover de favoritos
+      favorites = favorites.filter((fav: Ticket) => fav.id !== ticket.id)
+    } else {
+      // Agregar a favoritos
+      const favoriteTicket = {
+        ...ticket,
+        category: 'Evento',
+        addedDate: new Date().toISOString()
+      }
+      favorites.push(favoriteTicket)
+    }
+    
+    localStorage.setItem('tickbase-favorites', JSON.stringify(favorites))
+    setIsFavorite(!isFavorite)
+    
+    // Disparar evento personalizado para actualizar el contador
+    window.dispatchEvent(new Event('storage'))
+  }
 
   return (
     <>
@@ -36,6 +71,16 @@ export function TicketCard({ ticket, onSelect }: TicketCardProps) {
           <div className="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
             {ticket.available} disponibles
           </div>
+          <button
+            onClick={toggleFavorite}
+            className={`absolute top-2 left-2 p-2 rounded-full transition-all duration-300 ${
+              isFavorite 
+                ? 'bg-red-500 text-white' 
+                : 'bg-black/50 text-white hover:bg-red-500/80'
+            }`}
+          >
+            <Heart className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
+          </button>
         </div>
 
         <div className="space-y-3">

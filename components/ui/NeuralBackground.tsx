@@ -1,93 +1,134 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { NeuralParticles, NeuralConnections } from './NeuralParticles'
+
+interface NeuralNode {
+  id: number
+  x: number
+  y: number
+  size: number
+  energy: number
+  connections: number[]
+  color: string
+  pulse: number
+}
+
+interface DataStream {
+  id: number
+  x: number
+  y: number
+  delay: number
+  speed: number
+  intensity: number
+}
 
 export function NeuralBackground() {
-  const [dataStreams, setDataStreams] = useState<Array<{ id: number; x: number; delay: number }>>([])
+  const [nodes, setNodes] = useState<NeuralNode[]>([])
+  const [dataStreams, setDataStreams] = useState<DataStream[]>([])
+  const [isActive, setIsActive] = useState(false)
 
   useEffect(() => {
-    // Generar flujos de datos neurales
+    const generateNeuralNetwork = () => {
+      const nodeCount = 40 // Más nodos para mayor densidad
+      const newNodes: NeuralNode[] = []
+      const colors = [
+        '#00ff88', '#00d4ff', '#ff0080', '#ffaa00', '#aa00ff', 
+        '#00ffaa', '#ff4400', '#4400ff', '#ffaa44', '#44ffaa',
+        '#ff0044', '#0044ff', '#ffaa00', '#aaff00', '#00aaff'
+      ]
+      
+      for (let i = 0; i < nodeCount; i++) {
+        newNodes.push({
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          size: Math.random() * 15 + 8, // Nodos más grandes
+          energy: Math.random(),
+          connections: [],
+          color: colors[Math.floor(Math.random() * colors.length)],
+          pulse: Math.random() * 1.5 + 0.5 // Pulso más rápido
+        })
+      }
+      
+      // Crear conexiones más densas como red blockchain
+      newNodes.forEach((node, index) => {
+        const connections: number[] = []
+        newNodes.forEach((otherNode, otherIndex) => {
+          if (index !== otherIndex) {
+            const distance = Math.sqrt(
+              Math.pow(node.x - otherNode.x, 2) + Math.pow(node.y - otherNode.y, 2)
+            )
+            // Más conexiones para simular red blockchain
+            if (distance < 50 && Math.random() > 0.4) {
+              connections.push(otherIndex)
+            }
+          }
+        })
+        node.connections = connections
+      })
+      
+      setNodes(newNodes)
+    }
+
     const generateDataStreams = () => {
-      const newStreams = Array.from({ length: 8 }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        delay: Math.random() * 15
-      }))
+      const streamCount = 30 // Más streams para mayor dinamismo
+      const newStreams: DataStream[] = []
+      
+      for (let i = 0; i < streamCount; i++) {
+        newStreams.push({
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          delay: Math.random() * 10, // Menos delay para más actividad
+          speed: Math.random() * 3 + 1, // Velocidad más alta
+          intensity: Math.random() * 0.9 + 0.3 // Mayor intensidad
+        })
+      }
+      
       setDataStreams(newStreams)
     }
 
+    generateNeuralNetwork()
     generateDataStreams()
+    setIsActive(true)
     
-    // Regenerar elementos cada 30 segundos
-    const interval = setInterval(generateDataStreams, 30000)
+    // Regenerar cada 20 segundos para mayor dinamismo
+    const interval = setInterval(() => {
+      generateNeuralNetwork()
+      generateDataStreams()
+    }, 20000)
     
     return () => clearInterval(interval)
   }, [])
 
+  if (!isActive) return null
+
   return (
-    <div className="neural-glass-bg fixed inset-0 -z-10">
-      {/* Neural Grid Overlay */}
-      <div className="neural-grid"></div>
+    <div className="neural-glass-bg fixed inset-0 -z-10 overflow-hidden">
+      {/* Enhanced Neural Grid */}
+      <div className="neural-grid-enhanced"></div>
       
-      {/* Enhanced Neural Particles */}
-      <NeuralParticles 
-        count={30} 
-        speed={0.5} 
-        colors={['#78dbff', '#4facfe', '#00d4aa', '#ff77c6', '#f093fb']}
-        className="opacity-60"
-      />
-
-      {/* Neural Energy Waves */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="neural-wave" style={{ top: '20%' }}></div>
-        <div className="neural-wave" style={{ top: '40%' }}></div>
-        <div className="neural-wave" style={{ top: '60%' }}></div>
-        <div className="neural-wave" style={{ top: '80%' }}></div>
-      </div>
-
-      {/* Neural Orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="neural-orb" style={{ top: '10%', left: '10%' }}></div>
-        <div className="neural-orb" style={{ top: '20%', right: '15%' }}></div>
-        <div className="neural-orb" style={{ bottom: '30%', left: '20%' }}></div>
-        <div className="neural-orb" style={{ bottom: '10%', right: '10%' }}></div>
-      </div>
-
-      {/* Neural Data Streams */}
-      <div className="absolute inset-0 overflow-hidden">
-        {dataStreams.map((stream) => (
-          <div
-            key={stream.id}
-            className="neural-data-stream"
-            style={{
-              left: `${stream.x}%`,
-              animationDelay: `${stream.delay}s`
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Enhanced Energy Blobs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/15 rounded-full blur-3xl animate-pulse-slow neural-glow"></div>
-        <div className="absolute top-3/4 right-1/4 w-80 h-80 bg-purple-500/15 rounded-full blur-3xl animate-pulse-slow neural-glow" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-pink-500/15 rounded-full blur-3xl animate-pulse-slow neural-glow" style={{ animationDelay: '4s' }}></div>
-        <div className="absolute top-1/2 right-1/3 w-72 h-72 bg-green-500/10 rounded-full blur-3xl animate-pulse-slow neural-glow" style={{ animationDelay: '6s' }}></div>
-        <div className="absolute bottom-1/3 right-1/4 w-56 h-56 bg-yellow-500/10 rounded-full blur-3xl animate-pulse-slow neural-glow" style={{ animationDelay: '8s' }}></div>
-      </div>
-
-      {/* Enhanced Neural Connection Lines */}
-      <svg className="absolute inset-0 w-full h-full opacity-30" style={{ zIndex: 1 }}>
+      {/* Dynamic Neural Network */}
+      <svg className="absolute inset-0 w-full h-full opacity-60" style={{ zIndex: 2 }}>
         <defs>
-          <linearGradient id="neuralGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#667eea" stopOpacity="0.4" />
-            <stop offset="25%" stopColor="#764ba2" stopOpacity="0.6" />
-            <stop offset="50%" stopColor="#f093fb" stopOpacity="0.5" />
-            <stop offset="75%" stopColor="#4facfe" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#00d4aa" stopOpacity="0.3" />
+          <radialGradient id="neuralNodeGradient" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#78dbff" stopOpacity="0.9" />
+            <stop offset="70%" stopColor="#4facfe" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#00d4aa" stopOpacity="0.2" />
+          </radialGradient>
+          <linearGradient id="neuralConnectionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#667eea" stopOpacity="0.8" />
+            <stop offset="50%" stopColor="#f093fb" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#4facfe" stopOpacity="0.4" />
           </linearGradient>
-          <filter id="neuralGlow">
+          <filter id="neuralGlowAdvanced">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feMerge> 
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          <filter id="neuralPulse">
             <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
             <feMerge> 
               <feMergeNode in="coloredBlur"/>
@@ -95,55 +136,206 @@ export function NeuralBackground() {
             </feMerge>
           </filter>
         </defs>
-        {/* Neural connection lines will be handled by NeuralConnections component */}
+        
+        {/* Neural Connections */}
+        {nodes.map((node) => 
+          node.connections.map((connectionId) => {
+            const connectedNode = nodes[connectionId]
+            if (!connectedNode) return null
+            
+            return (
+              <line
+                key={`connection-${node.id}-${connectionId}`}
+                x1={`${node.x}%`}
+                y1={`${node.y}%`}
+                x2={`${connectedNode.x}%`}
+                y2={`${connectedNode.y}%`}
+                stroke="url(#neuralConnectionGradient)"
+                strokeWidth="2"
+                opacity="0.6"
+                className="neural-connection-advanced"
+                filter="url(#neuralGlowAdvanced)"
+              />
+            )
+          })
+        )}
+        
+        {/* Neural Nodes */}
+        {nodes.map((node) => (
+          <g key={`node-${node.id}`}>
+            <circle
+              cx={`${node.x}%`}
+              cy={`${node.y}%`}
+              r={node.size}
+              fill={node.color}
+              opacity="0.8"
+              filter="url(#neuralPulse)"
+              className="neural-node-advanced"
+              style={{
+                animationDelay: `${node.id * 0.3}s`,
+                animationDuration: `${node.pulse}s`
+              }}
+            />
+            <circle
+              cx={`${node.x}%`}
+              cy={`${node.y}%`}
+              r={node.size * 1.5}
+              fill="none"
+              stroke={node.color}
+              strokeWidth="1"
+              opacity="0.4"
+              className="neural-node-ring"
+              style={{
+                animationDelay: `${node.id * 0.3 + 0.5}s`,
+                animationDuration: `${node.pulse * 2}s`
+              }}
+            />
+          </g>
+        ))}
       </svg>
 
-      {/* Enhanced Neural Pulse Rings */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-40 h-40 border border-white/20 rounded-full animate-ping neural-glow"></div>
-        <div className="absolute w-32 h-32 border border-white/30 rounded-full animate-ping neural-glow" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute w-24 h-24 border border-white/40 rounded-full animate-ping neural-glow" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute w-16 h-16 border border-white/50 rounded-full animate-ping neural-glow" style={{ animationDelay: '3s' }}></div>
+      {/* Enhanced Energy Blobs with Movement */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="neural-energy-blob neural-blob-1"></div>
+        <div className="neural-energy-blob neural-blob-2"></div>
+        <div className="neural-energy-blob neural-blob-3"></div>
+        <div className="neural-energy-blob neural-blob-4"></div>
+        <div className="neural-energy-blob neural-blob-5"></div>
+        <div className="neural-energy-blob neural-blob-6"></div>
       </div>
 
-      {/* Neural Matrix Rain Effect */}
-      <div className="absolute inset-0 overflow-hidden opacity-20">
-        {Array.from({ length: 15 }, (_, i) => (
+      {/* Advanced Neural Waves */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="neural-wave-advanced" style={{ top: '10%', animationDelay: '0s' }}></div>
+        <div className="neural-wave-advanced" style={{ top: '30%', animationDelay: '1s' }}></div>
+        <div className="neural-wave-advanced" style={{ top: '50%', animationDelay: '2s' }}></div>
+        <div className="neural-wave-advanced" style={{ top: '70%', animationDelay: '3s' }}></div>
+        <div className="neural-wave-advanced" style={{ top: '90%', animationDelay: '4s' }}></div>
+      </div>
+
+      {/* Dynamic Data Streams */}
+      <div className="absolute inset-0 overflow-hidden">
+        {dataStreams.map((stream) => (
+          <div
+            key={stream.id}
+            className="neural-data-stream-advanced"
+            style={{
+              left: `${stream.x}%`,
+              top: `${stream.y}%`,
+              animationDelay: `${stream.delay}s`,
+              animationDuration: `${stream.speed * 10}s`,
+              opacity: stream.intensity
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Neural Matrix Rain Enhanced */}
+      <div className="absolute inset-0 overflow-hidden opacity-30">
+        {Array.from({ length: 25 }, (_, i) => (
           <div
             key={i}
-            className="absolute text-green-400 text-xs font-mono opacity-30"
+            className="absolute text-green-400 text-sm font-mono opacity-40 neural-matrix-char"
             style={{
-              left: `${(i * 7) % 100}%`,
-              top: `${(i * 11) % 100}%`,
-              animation: `neural-float ${8 + (i % 10)}s linear infinite`,
-              animationDelay: `${i * 1.5}s`
+              left: `${(i * 4) % 100}%`,
+              top: `${(i * 8) % 100}%`,
+              animation: `neural-matrix-fall ${12 + (i % 8)}s linear infinite`,
+              animationDelay: `${i * 0.8}s`
             }}
           >
-            {`${i.toString(36)}${(i * 2).toString(36)}`}
+            {String.fromCharCode(65 + (i % 26))}
           </div>
         ))}
       </div>
 
-      {/* Neural Scan Lines */}
+      {/* Neural Scan Lines Enhanced */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="neural-scan-line" style={{ animationDelay: '0s' }}></div>
-        <div className="neural-scan-line" style={{ animationDelay: '2s' }}></div>
-        <div className="neural-scan-line" style={{ animationDelay: '4s' }}></div>
+        <div className="neural-scan-line-advanced" style={{ animationDelay: '0s' }}></div>
+        <div className="neural-scan-line-advanced" style={{ animationDelay: '1.5s' }}></div>
+        <div className="neural-scan-line-advanced" style={{ animationDelay: '3s' }}></div>
+        <div className="neural-scan-line-advanced" style={{ animationDelay: '4.5s' }}></div>
       </div>
 
-      {/* Neural Cyber Grid */}
-      <div className="absolute inset-0 neural-cyber-grid opacity-20"></div>
-
-      {/* Neural Energy Field */}
-      <div className="neural-energy-field"></div>
-
-      {/* Neural Digital Rain */}
-      <div className="neural-digital-rain"></div>
-
-      {/* Neural Holographic Effects */}
+      {/* Neural Holographic Overlays */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="neural-hologram" style={{ top: '10%', left: '10%', width: '30%', height: '20%' }}></div>
-        <div className="neural-hologram" style={{ top: '60%', right: '10%', width: '25%', height: '15%', animationDelay: '3s' }}></div>
+        <div className="neural-hologram-advanced" style={{ top: '5%', left: '5%', width: '40%', height: '25%' }}></div>
+        <div className="neural-hologram-advanced" style={{ top: '35%', right: '5%', width: '35%', height: '20%', animationDelay: '2s' }}></div>
+        <div className="neural-hologram-advanced" style={{ bottom: '15%', left: '10%', width: '30%', height: '15%', animationDelay: '4s' }}></div>
+        <div className="neural-hologram-advanced" style={{ bottom: '5%', right: '15%', width: '25%', height: '18%', animationDelay: '6s' }}></div>
+      </div>
+
+      {/* Neural Energy Field Enhanced */}
+      <div className="neural-energy-field-advanced"></div>
+
+      {/* Neural Digital Rain Enhanced */}
+      <div className="neural-digital-rain-advanced"></div>
+
+      {/* Neural Cyber Grid Enhanced */}
+      <div className="neural-cyber-grid-advanced"></div>
+
+      {/* Neural Pulse Rings Enhanced */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="neural-pulse-ring neural-ring-1"></div>
+        <div className="neural-pulse-ring neural-ring-2"></div>
+        <div className="neural-pulse-ring neural-ring-3"></div>
+        <div className="neural-pulse-ring neural-ring-4"></div>
+      </div>
+
+      {/* Blockchain Light Show System */}
+      <div className="absolute inset-0 overflow-hidden">
+        {Array.from({ length: 80 }, (_, i) => (
+          <div
+            key={i}
+            className="blockchain-light-particle"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 15}s`,
+              animationDuration: `${8 + Math.random() * 12}s`
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Blockchain Energy Bursts */}
+      <div className="absolute inset-0 overflow-hidden">
+        {Array.from({ length: 15 }, (_, i) => (
+          <div
+            key={`burst-${i}`}
+            className="blockchain-energy-burst"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 20}s`,
+              animationDuration: `${3 + Math.random() * 4}s`
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Blockchain Data Packets */}
+      <div className="absolute inset-0 overflow-hidden">
+        {Array.from({ length: 25 }, (_, i) => (
+          <div
+            key={`packet-${i}`}
+            className="blockchain-data-packet"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 25}s`,
+              animationDuration: `${6 + Math.random() * 8}s`
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Neural Energy Orbs */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="neural-orb-advanced" style={{ top: '15%', left: '20%', animationDelay: '0s' }}></div>
+        <div className="neural-orb-advanced" style={{ top: '25%', right: '25%', animationDelay: '1s' }}></div>
+        <div className="neural-orb-advanced" style={{ bottom: '35%', left: '15%', animationDelay: '2s' }}></div>
+        <div className="neural-orb-advanced" style={{ bottom: '20%', right: '20%', animationDelay: '3s' }}></div>
+        <div className="neural-orb-advanced" style={{ top: '60%', left: '50%', animationDelay: '4s' }}></div>
       </div>
     </div>
   )

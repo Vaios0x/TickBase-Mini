@@ -91,18 +91,8 @@ export function SmartWalletConnector({ onWalletConnected }: SmartWalletConnector
   // Mostrar opciones de wallet para que el usuario elija
   return (
     <div className="text-center space-y-3">
-      <div className="text-green-300 text-sm mb-2">
-        Elige tu wallet preferido:
-      </div>
-      
-      <div className="space-y-2">
-        <div className="text-white/70 text-xs">
-          MetaMask, Coinbase Wallet, Brave Wallet, etc.
-        </div>
-        
-        <div className="text-blue-300 text-xs">
-          💡 Haz clic en &quot;Connect Wallet&quot; para ver todas las opciones
-        </div>
+      <div className="text-white/70 text-sm">
+        Conecta tu wallet para acceder a todas las funciones
       </div>
     </div>
   )
