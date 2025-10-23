@@ -53,7 +53,6 @@ export function MobileOptimized({ children }: MobileOptimizedProps) {
         paddingBottom: `${safeAreaInsets.bottom}px`,
         paddingLeft: `${safeAreaInsets.left}px`,
         paddingRight: `${safeAreaInsets.right}px`,
-        minHeight: '100vh',
         minHeight: '100dvh', // Dynamic viewport height
       }}
     >
