@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
 import { ConnectWallet } from '@coinbase/onchainkit/wallet'
+import { SmartWalletConnector } from '@/components/SmartWalletConnector'
 import Link from 'next/link'
 import { TicketList } from '@/components/tickets/TicketList'
 import { AIEventDiscovery } from '@/components/advanced/AIEventDiscovery'
@@ -60,7 +61,16 @@ export default function Home() {
                 </button>
               </div>
             ) : (
-              isMounted && <ConnectWallet />
+              isMounted && (
+                <div className="flex items-center gap-3">
+                  <SmartWalletConnector 
+                    onWalletConnected={(address) => {
+                      console.log('Wallet conectado:', address)
+                    }}
+                  />
+                  <ConnectWallet />
+                </div>
+              )
             )}
           </div>
         </div>

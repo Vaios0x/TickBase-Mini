@@ -34,11 +34,11 @@ export const minikitConfig = {
       showCloseButton: true
     },
     
-    // Configuración de transacciones
-    transactions: {
-      gasless: true,
-      paymasterUrl: process.env.NEXT_PUBLIC_PAYMASTER_URL
-    }
+  // Configuración de transacciones
+  transactions: {
+    gasless: true,
+    paymasterUrl: "https://api.developer.coinbase.com/rpc/v1/base/7ca121ac-73cb-4540-9ea4-24730cf60e6e"
+  }
   },
   
   // Configuración de asociación de cuenta (se generará después del deployment)

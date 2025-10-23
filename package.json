@@ -18,6 +18,8 @@
     "screenshots": "node scripts/generate-screenshots.js",
     "fix:localhost": "node scripts/fix-localhost-auth.js",
     "auth:base": "node scripts/authorize-base-build.js",
+    "setup:coinbase": "node scripts/setup-coinbase-credentials.js",
+    "test:farcaster": "node scripts/test-farcaster-wallet.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"

@@ -6,11 +6,11 @@ import { coinbaseWallet, injected } from 'wagmi/connectors'
 export const config = createConfig({
   chains: [base],
   connectors: [
-    injected(),
     coinbaseWallet({
       appName: 'TickBase - NFT Tickets',
       appLogoUrl: 'https://tickbase-miniapp.vercel.app/icon.png',
     }),
+    injected(),
   ],
   transports: {
     [base.id]: http(),
