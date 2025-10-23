@@ -5,11 +5,10 @@ import { useAccount } from 'wagmi'
 import { ConnectWallet, Wallet, WalletDropdown, WalletDropdownDisconnect } from '@coinbase/onchainkit/wallet'
 import { TicketList } from '@/components/tickets/TicketList'
 import { AIEventDiscovery } from '@/components/advanced/AIEventDiscovery'
-import { DeFiFeatures } from '@/components/advanced/DeFiFeatures'
 
 export default function Home() {
   const { address, isConnected } = useAccount()
-  const [activeTab, setActiveTab] = useState<'tickets' | 'ai' | 'defi'>('tickets')
+  const [activeTab, setActiveTab] = useState<'tickets' | 'ai'>('tickets')
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-pink-900">
@@ -37,7 +36,6 @@ export default function Home() {
           {[
             { id: 'tickets', label: '🎫 Tickets', icon: '🎫' },
             { id: 'ai', label: '🤖 AI Discovery', icon: '🤖' },
-            { id: 'defi', label: '💰 DeFi', icon: '💰' }
           ].map((tab) => (
             <button
               key={tab.id}
@@ -71,7 +69,6 @@ export default function Home() {
                 <ul className="text-white/70 space-y-2 text-left">
                   <li>✅ AI-Powered Event Discovery</li>
                   <li>✅ Social Features con Farcaster</li>
-                  <li>✅ DeFi Integration (Staking, Liquidity)</li>
                   <li>✅ One-Click Purchase Gasless</li>
                   <li>✅ Dynamic Pricing Engine</li>
                   <li>✅ Base Mini App Framework</li>
@@ -82,7 +79,6 @@ export default function Home() {
             <div>
               {activeTab === 'tickets' && <TicketList onSelectTicket={() => {}} />}
               {activeTab === 'ai' && <AIEventDiscovery />}
-              {activeTab === 'defi' && <DeFiFeatures />}
             </div>
           )}
         </main>
