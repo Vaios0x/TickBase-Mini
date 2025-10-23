@@ -101,7 +101,7 @@ export function SmartWalletConnector({ onWalletConnected }: SmartWalletConnector
         </div>
         
         <div className="text-blue-300 text-xs">
-          💡 Haz clic en "Connect Wallet" para ver todas las opciones
+          💡 Haz clic en &quot;Connect Wallet&quot; para ver todas las opciones
         </div>
       </div>
     </div>
