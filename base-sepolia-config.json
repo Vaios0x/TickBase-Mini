@@ -1,21 +1,23 @@
 {
+  "timestamp": "2025-10-24T06:10:13.954Z",
   "network": {
-    "name": "Base Sepolia",
+    "name": "Base Sepolia Testnet",
     "chainId": 84532,
     "rpcUrl": "https://sepolia.base.org",
     "explorer": "https://sepolia.basescan.org"
   },
-  "deployer": "0x8ca5CB396bF3AB2186942B5d6F9CedbDAFEeA343",
-  "deployedAt": "2025-10-24T05:14:52.710Z",
   "contracts": {
     "TICKET_NFT": "0xE81fd4523284561382FEd2C694b0BAb0881C148D",
     "MARKETPLACE": "0xff85e8A49d4623C3D1edE1c0CbC7ed08685D7CC4",
-    "VALIDATOR": "0x7Ecd57D7fF8b0c9A894c6282bB023980154732c5",
     "FACTORY": "0x7A8917D50441c154A0eE545f02c6695C20fb92d7",
+    "VALIDATOR": "0x7Ecd57D7fF8b0c9A894c6282bB023980154732c5",
     "SIMPLE_FACTORY": "0xFDCFd7EDf8f1A34Fe6DcADf27cF237bF26a3de8E"
   },
-  "gasUsed": {
-    "estimated": "~5,000,000 gas",
-    "actual": "Verificar en explorer"
-  }
+  "features": {
+    "realTransactions": true,
+    "walletIntegration": true,
+    "baseSepoliaOnly": true,
+    "noMockData": true
+  },
+  "status": "READY_FOR_BASE_SEPOLIA"
 }

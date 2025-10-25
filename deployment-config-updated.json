@@ -6,7 +6,7 @@
     "explorer": "https://sepolia.basescan.org"
   },
   "deployer": "0x8ca5CB396bF3AB2186942B5d6F9CedbDAFEeA343",
-  "deployedAt": "2025-10-24T05:14:52.710Z",
+  "updatedAt": "2025-10-24T05:21:28.085Z",
   "contracts": {
     "TICKET_NFT": "0xE81fd4523284561382FEd2C694b0BAb0881C148D",
     "MARKETPLACE": "0xff85e8A49d4623C3D1edE1c0CbC7ed08685D7CC4",
@@ -14,8 +14,14 @@
     "FACTORY": "0x7A8917D50441c154A0eE545f02c6695C20fb92d7",
     "SIMPLE_FACTORY": "0xFDCFd7EDf8f1A34Fe6DcADf27cF237bF26a3de8E"
   },
+  "fees": {
+    "platformFee": "1.0%",
+    "royaltyFee": "2.5%",
+    "maxFee": "10.0%",
+    "cnbvCompliant": true
+  },
   "gasUsed": {
-    "estimated": "~5,000,000 gas",
-    "actual": "Verificar en explorer"
+    "marketplaceUpdate": "~50,000 gas",
+    "factoryUpdate": "~50,000 gas"
   }
 }

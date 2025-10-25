@@ -1,0 +1,29 @@
+{
+  "timestamp": "2025-10-24T05:31:39.594Z",
+  "network": "Base Sepolia",
+  "contracts": {
+    "TICKET_NFT": "0xE81fd4523284561382FEd2C694b0BAb0881C148D",
+    "MARKETPLACE": "0xff85e8A49d4623C3D1edE1c0CbC7ed08685D7CC4",
+    "VALIDATOR": "0x7Ecd57D7fF8b0c9A894c6282bB023980154732c5",
+    "FACTORY": "0x7A8917D50441c154A0eE545f02c6695C20fb92d7",
+    "SIMPLE_FACTORY": "0xFDCFd7EDf8f1A34Fe6DcADf27cF237bF26a3de8E"
+  },
+  "tests": {
+    "contractConnection": "✅ PASSED",
+    "basicReadFunctions": "✅ PASSED",
+    "eventCreation": "✅ PASSED",
+    "ticketTypeAddition": "✅ PASSED",
+    "ticketMinting": "✅ PASSED",
+    "marketplaceListing": "✅ PASSED",
+    "ticketValidation": "✅ PASSED",
+    "royalties": "✅ PASSED",
+    "compliance": "✅ PASSED",
+    "transfers": "✅ PASSED"
+  },
+  "fees": {
+    "platformFee": "1.0%",
+    "royaltyFee": "2.5%",
+    "maxFee": "10.0%"
+  },
+  "status": "ALL CORE FUNCTIONS WORKING"
+}

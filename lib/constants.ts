@@ -1,4 +1,4 @@
-export const CHAIN_ID = parseInt(process.env.NEXT_PUBLIC_CHAIN_ID || '8453')
+export const CHAIN_ID = parseInt(process.env.NEXT_PUBLIC_CHAIN_ID || '84532')
 export const IS_TESTNET = CHAIN_ID === 84532
 
 export const TICKET_CATEGORIES = [
@@ -87,9 +87,11 @@ export const MOCK_TICKETS = [
 ]
 
 export const CONTRACT_ADDRESSES = {
-  TICKET_NFT: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`,
-  MARKETPLACE: process.env.NEXT_PUBLIC_MARKETPLACE_ADDRESS as `0x${string}`,
-  FACTORY: process.env.NEXT_PUBLIC_FACTORY_ADDRESS as `0x${string}`,
+  TICKET_NFT: "0xE81fd4523284561382FEd2C694b0BAb0881C148D" as `0x${string}`,
+  MARKETPLACE: "0xff85e8A49d4623C3D1edE1c0CbC7ed08685D7CC4" as `0x${string}`,
+  FACTORY: "0x7A8917D50441c154A0eE545f02c6695C20fb92d7" as `0x${string}`,
+  VALIDATOR: "0x7Ecd57D7fF8b0c9A894c6282bB023980154732c5" as `0x${string}`,
+  SIMPLE_FACTORY: "0xFDCFd7EDf8f1A34Fe6DcADf27cF237bF26a3de8E" as `0x${string}`,
 } as const
 
 export const RPC_URLS = {
@@ -150,7 +152,7 @@ export const STATS = {
 } as const
 
 export const PRICING = {
-  PLATFORM_FEE: 2.5, // 2.5%
+  PLATFORM_FEE: 1.0, // 1.0%
   MIN_TICKET_PRICE: 0.001, // 0.001 ETH
   MAX_TICKET_PRICE: 10, // 10 ETH
 } as const

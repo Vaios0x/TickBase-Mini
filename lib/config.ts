@@ -7,7 +7,7 @@ export const config = createConfig({
   chains: [base],
   connectors: [
     coinbaseWallet({
-      appName: 'TickBase - NFT Tickets',
+      appName: 'TickBase - Global NFT Tickets',
       appLogoUrl: 'https://tickbase-miniapp.vercel.app/icon.png',
     }),
     injected(),

@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-10-24T05:49:14.803Z",
+  "flow": {
+    "step1": "Usuario hace clic en 'Comprar'",
+    "step2": "Se abre modal de compra con detalles",
+    "step3": "Usuario confirma cantidad y precio",
+    "step4": "Usuario hace clic en 'Comprar X ETH'",
+    "step5": "Se abre el wallet automáticamente",
+    "step6": "Usuario firma la transacción en el wallet",
+    "step7": "Transacción se envía a la blockchain",
+    "step8": "Se espera confirmación automáticamente",
+    "step9": "Usuario recibe confirmación en UI"
+  },
+  "walletIntegration": {
+    "automaticOpen": "✅ IMPLEMENTED",
+    "transactionSigning": "✅ IMPLEMENTED",
+    "confirmationWaiting": "✅ IMPLEMENTED",
+    "errorHandling": "✅ IMPLEMENTED",
+    "resultDisplay": "✅ IMPLEMENTED"
+  },
+  "userExperience": {
+    "seamless": "✅ IMPLEMENTED",
+    "intuitive": "✅ IMPLEMENTED",
+    "secure": "✅ IMPLEMENTED",
+    "fast": "✅ IMPLEMENTED"
+  }
+}

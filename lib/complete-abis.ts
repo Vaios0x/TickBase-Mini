@@ -1,7 +1,3 @@
-// ABIs completos y optimizados para TickBase
-// Generado automáticamente - NO EDITAR MANUALMENTE
-// Fecha: 2025-10-24T05:26:53.693Z
-
 // ABIs completos para TickBase Smart Contracts
 // Generado automáticamente - NO EDITAR MANUALMENTE
 // Fecha: 2025-10-24T05:26:53.691Z
@@ -1351,9 +1347,3 @@ export type MarketplaceContract = typeof MARKETPLACE_ABI;
 export type FactoryContract = typeof FACTORY_ABI;
 export type ValidatorContract = typeof VALIDATOR_ABI;
 export type SimpleFactoryContract = typeof SIMPLE_FACTORY_ABI;
-
-
-// ABIs legacy para compatibilidad (DEPRECATED)
-export const TICKET_ABI = TICKET_NFT_ABI;
-export const MARKETPLACE_ABI_LEGACY = MARKETPLACE_ABI;
-export const FACTORY_ABI_LEGACY = FACTORY_ABI;
