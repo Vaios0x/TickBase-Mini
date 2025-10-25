@@ -9,8 +9,8 @@ import {
   FACTORY_ABI, 
   VALIDATOR_ABI, 
   SIMPLE_FACTORY_ABI 
-} from './complete-abis';
-import { CONTRACT_ADDRESSES } from './constants';
+} from '@/lib/complete-abis';
+import { CONTRACT_ADDRESSES } from '@/lib/constants';
 
 // Hook para TicketNFT
 export function useTicketNFT() {

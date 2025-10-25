@@ -88,7 +88,7 @@ export function WalletDiagnostic() {
     }
   }
   
-  const testTransaction = async () => {
+  const testWalletTransaction = async () => {
     if (!isConnected) {
       alert('Por favor conecta tu wallet primero')
       return
@@ -98,7 +98,7 @@ export function WalletDiagnostic() {
       console.log('🧪 Probando transacción...')
       
       // Esta función debería abrir el wallet automáticamente
-      const tx = await testTransaction({
+      const tx = await testWalletTransaction({
         args: [1], // listingId de prueba
         value: parseEther('0.001') // Cantidad pequeña para prueba
       })
